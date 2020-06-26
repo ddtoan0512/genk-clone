@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin'], function(){
+    Route::resource('/category', 'Admin\CategoryController'); 
+});
+

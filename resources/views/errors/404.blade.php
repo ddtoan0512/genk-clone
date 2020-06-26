@@ -18,14 +18,13 @@ License: You must have a valid license purchased only from themeforest(the above
 	<head>
 
 		<!--begin::Base Path (base relative path for assets of this page) -->
-		<base href="../">
+		<base href="../../../../">
 
 		<!--end::Base Path -->
 		<meta charset="utf-8" />
-		<title>Admin | Dashboard</title>
-		<meta name="description" content="Updates and statistics">
+		<title>Không tìm thấy trang</title>
+		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<!--begin::Fonts -->
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
@@ -42,10 +41,10 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<!--end::Fonts -->
 
-		<!--begin::Page Vendors Styles(used by this page) -->
-		<link href="./assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+		<!--begin::Page Custom Styles(used by this page) -->
+		<link href="./assets/css/demo1/pages/general/error/error-2.css" rel="stylesheet" type="text/css" />
 
-		<!--end::Page Vendors Styles -->
+		<!--end::Page Custom Styles -->
 
 		<!--begin:: Global Mandatory Vendors -->
 		<link href="./assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
@@ -78,6 +77,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="./assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
 		<link href="./assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
 		<link href="./assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+
 		<!--end:: Global Optional Vendors -->
 
 		<!--begin::Global Theme Styles(used by all pages) -->
@@ -92,7 +92,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="./assets/css/demo1/skins/aside/dark.css" rel="stylesheet" type="text/css" />
 
 		<!--end::Layout Skins -->
-		<link rel="shortcut icon" href="./assets/media/logos/favicon.ico" />
+		{{-- <link rel="shortcut icon" href="./assets/media/logos/favicon.ico" /> --}}
 	</head>
 
 	<!-- end::Head -->
@@ -101,54 +101,20 @@ License: You must have a valid license purchased only from themeforest(the above
 	<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
 
 		<!-- begin:: Page -->
-
-		<!-- begin:: Header Mobile -->
-		<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
-			<div class="kt-header-mobile__logo">
-				<a href="demo1/index.html">
-					<img alt="Logo" src="./assets/media/logos/logo-light.png" />
-				</a>
-			</div>
-			<div class="kt-header-mobile__toolbar">
-				<button class="kt-header-mobile__toggler kt-header-mobile__toggler--left" id="kt_aside_mobile_toggler"><span></span></button>
-				<button class="kt-header-mobile__toggler" id="kt_header_mobile_toggler"><span></span></button>
-				<button class="kt-header-mobile__topbar-toggler" id="kt_header_mobile_topbar_toggler"><i class="flaticon-more"></i></button>
-			</div>
-		</div>
-
-		<!-- end:: Header Mobile -->
-		<div class="kt-grid kt-grid--hor kt-grid--root">
-			<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
-
-				<!-- begin:: Aside -->
-
-        @include('components.admin.aside')
-
-				<!-- end:: Aside -->
-				<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
-
-					<!-- begin:: Header -->
-
-          @include('components.admin.header')
-
-					<!-- end:: Header -->
-					<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
-
-            @yield('content')
-						
-					</div>
-
-					<!-- begin:: Footer -->
-
-          @include('components.admin.footer')
-
-					<!-- end:: Footer -->
+		<div class="kt-grid kt-grid--ver kt-grid--root">
+			<div class="kt-grid__item kt-grid__item--fluid kt-grid  kt-error-v2" style="background-image: url(./assets/media//error/bg2.jpg);">
+				<div class="kt-error_container">
+					<span class="kt-error_title2 kt-font-light">
+						<h1>OOPS!</h1>
+					</span>
+					<span class="kt-error_desc kt-font-light">
+						Something went wrong here
+					</span>
 				</div>
 			</div>
 		</div>
 
 		<!-- end:: Page -->
-
 
 		<!-- begin::Global Config(global config for global JS sciprts) -->
 		<script>
@@ -245,21 +211,6 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="./assets/js/demo1/scripts.bundle.js" type="text/javascript"></script>
 
 		<!--end::Global Theme Bundle -->
-
-		<!--begin::Page Vendors(used by this page) -->
-		<script src="./assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-		<script src="//maps.google.com/maps/api/js?key=AIzaSyBTGnKT7dt597vo9QgeQ7BFhvSRP4eiMSM" type="text/javascript"></script>
-		<script src="./assets/vendors/custom/gmaps/gmaps.js" type="text/javascript"></script>
-
-		<!--end::Page Vendors -->
-
-		<!--begin::Page Scripts(used by this page) -->
-		<script src="./assets/js/demo1/pages/dashboard.js" type="text/javascript"></script>
-
-
-		@yield('script')
-
-		<!--end::Page Scripts -->
 	</body>
 
 	<!-- end::Body -->

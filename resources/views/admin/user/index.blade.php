@@ -760,3 +760,18 @@
 <!-- end:: Content -->
 
 @endsection
+
+@section('script')
+
+<!--begin::Page Vendors(used by this page) -->
+<script src="./assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
+
+<!--end::Page Vendors -->
+
+<!--begin::Page Scripts(used by this page) -->
+<script src="./assets/js/demo1/pages/crud/datatables/basic/paginations.js" type="text/javascript"></script>
+
+<!--end::Page Scripts -->
+
+@endsection
+

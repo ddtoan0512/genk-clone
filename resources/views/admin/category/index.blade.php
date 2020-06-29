@@ -27,8 +27,8 @@
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
-                        <button type="button" class="btn btn-bold btn-label-brand btn-sm" data-toggle="modal"
-                            data-target="#kt_modal_add_cate">
+                        <button type="button" class="btn btn-bold btn-label-brand btn-sm" id="createCategory"
+                            data-toggle="modal">
                             <i class="la la-plus"></i>
                             Thêm danh mục
                         </button>
@@ -40,16 +40,30 @@
 
             <!--begin: Datatable -->
             <table id="table_category" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>	
+                <thead>
                     <tr role="row">
                         <th class="sorting">ID</th>
                         <th class="sorting">Tên danh mục</th>
                         <th class="sorting">Slug</th>
                         <th class="sorting">Mô tả</th>
+                        <th class="sorting">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    @foreach ($categories as $cate)
+                    <tr id="cate{{$cate->id}}">
+                        <td>{{ $cate->id }}</td>
+                        <td>{{ $cate->name }}</td>
+                        <td>{{ $cate->slug }}</td>
+                        <td>{{ $cate->description }}</td>
+                        <td>
+                            <a href="" type="button" class="removeCate" data-id="{{ $cate->id}}"><i class="fa fa-trash"
+                                    style="font-size: 20px; color: red"></i></a>
+                            <a href="" type="button" class="updateCate" data-id="{{ $cate->id}}"><i
+                                    class="fa fa-edit ml-3" style="font-size: 20px"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
 
@@ -61,12 +75,11 @@
 <!-- end:: Content -->
 
 <!--begin::Modal-->
-<div class="modal fade" id="kt_modal_add_cate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="kt_modal_cate" tabindex="-1" role="dialog" aria-labelledby="modelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thêm mới danh mục</h5>
+                <h5 class="modal-title" id="modelLabel">Thêm mới danh mục</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
@@ -83,7 +96,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
-                        <button type="submit" class="btn btn-primary" id="btnSaveCategory">Lưu</button>
+                        <button type="submit" class="btn btn-primary" value="add" id="btnSaveCategory">Lưu</button>
                     </div>
 
                 </form>
@@ -103,23 +116,19 @@
         })
 
         $('#table_category').DataTable();
+        $('#table_category_info').hide();
         $('.dataTables_length').addClass('bs-select');
-			
 
-        $('#category_form').validate({ // initialize the plugin
-            rules: {
-                category_name: {
-                    required: true,
-                },
-                category_description: {
-                    required: true,
-                }
-            },
-            messages: {
-                category_name: "Tên danh mục không được để trống",
-                category_description: "Mô tả danh mục không được để trống"
-            },
-            submitHandler: function () {
+        $('#createCategory').click(function () {
+            $('#kt_modal_cate').modal('show');
+            $("#category_form").trigger("reset");
+            $('#btnSaveCategory').val("add");
+        })
+
+        // insert category
+        $('#btnSaveCategory').click(function (e) {
+            if ($('#btnSaveCategory').val() == 'add') {
+                e.preventDefault();
                 $.ajax({
                     url: "{{ route('admin.category.store') }}",
                     type: 'POST',
@@ -135,37 +144,110 @@
                                 '',
                                 'success'
                             );
-                            $('#kt_modal_add_cate').modal('hide');
-                            $("#category_form").trigger("reset");
+                            $('#kt_modal_cate').modal('hide');
+                            addRowToDatatable(res.data);
+                        }
+                    }
+                })
+            }
+        })
 
+        // delete category
+        $('body').on('click', '.removeCate', function (e) {
+            e.preventDefault();
+            var categoryId = $(this).data('id');
+            var currentRow = $(this);
+            if (confirm("Bạn có chắc chắn muốn xoá !")) {
+                $.ajax({
+                    url: "/admin/category/delete/" + categoryId,
+                    type: "DELETE",
+                    success: function (res) {
+                        if (res.status) {
+                            Swal.fire(
+                                'Xoá danh mục thành công!',
+                                '',
+                                'success'
+                            );
+                            // currentRow.parent().parent().remove();
+                            // location.reload();
                         }
                     }
                 })
             }
         });
 
+        // update category
+        $('body').on('click', '.updateCate', function (e) {
+            var categoryId = $(this).data('id');
+            var currentRow = $(this).parent().parent();
+
+            // console.log(currentRow);
+
+            $("#category_form").trigger("reset");
+            $('#kt_modal_cate').modal('show');
+            $('#btnSaveCategory').val("update");
+            $('#modelLabel').text("Cập nhật danh mục");
+
+            $.get("/admin/category/" + categoryId, function (res) {
+                $('#category_name').val(res.category.name);
+                $('#category_description').val(res.category.description);
+            })
+
+            if ($('#btnSaveCategory').val() === 'update') {
+                e.preventDefault();
+                $('#btnSaveCategory').click(function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: "/admin/category/update/" + categoryId,
+                        type: "PUT",
+                        dataType: 'json',
+                        data: $('#category_form').serialize(),
+                        success: function (res) {
+                            if (res.status) {
+                                Swal.fire(
+                                    'Cập nhật danh mục thành công',
+                                    '',
+                                    'success'
+                                );
+                                console.log(res.category);
+
+                                var html = "<tr>";
+                                html += "<td>" + res.category.id + "</td>";
+                                html += "<td>" + res.category.name + "</td>";
+                                html += "<td>" + res.category.slug + "</td>";
+                                html += "<td>" + res.category.description + "</td>";
+                                html += `<td>
+                                    <a href="" type="button" class="removeCate" data-id="${res.category.id}"><i class="fa fa-trash"
+                                            style="font-size: 20px; color: red"></i></a>
+                                    <a href="" type="button" class="updateCate" data-id="${res.category.id}"><i
+                                            class="fa fa-edit ml-3" style="font-size: 20px"></i></a>
+                                </td>`;
+                                html += "</tr>";
+
+                                currentRow.replaceWith(html);
+                                $('#kt_modal_cate').modal('hide');
+                            }
+                        }
+                    })
+                })
+            }
+        });
+
     });
 
-		
-		function loadData(){
-			$.ajax({
-					url: "{{ route('admin.category.list') }}",
-					type: 'GET',
-					success: function(res){
-						$.each(res.data, function(key, value){
-							var html = "<tr>"
-									html += `<td>${value.id}</td>`
-									html += `<td>${value.name}</td>`
-									html += `<td>${value.slug}</td>`
-									html += `<td>${value.description}</td>`;
 
-							$('tbody').append(html);
-						})
-					}
-				})
-		}
 
-		loadData();
+    //declare function
+    function addRowToDatatable(data) {
+        $('#table_category').DataTable().row.add([
+            data.id,
+            data.name,
+            data.slug,
+            data.description,
+            `<a href="" type="button" class="removeCate" data-id="${data.id}"><i class="fa fa-trash" style="font-size: 20px; color: red"></i></a>
+            <a href="" type="button" class="updateCate" data-id="${data.id}"><i class="fa fa-edit ml-3" style="font-size: 20px"></i></a>`
+        ]).draw();
+    }
 
 </script>
 <!--begin::Page Vendors(used by this page) -->

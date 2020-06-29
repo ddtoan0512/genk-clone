@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Psy\Util\Str;
 
 class AdminCategoryController extends Controller
 {
@@ -15,14 +17,15 @@ class AdminCategoryController extends Controller
      */
     public function index(Request $request)
     {
+        $categories = Category::all();
+        // dd($categories);
         if($request->ajax()){
-            $categories = Category::all();
             return response()->json([
                 'data' => $categories
             ]);
         }
         
-        return view('admin.category.index');
+        return view('admin.category.index', compact('categories'));
     }
 
     /**
@@ -96,7 +99,10 @@ class AdminCategoryController extends Controller
      */
     public function edit($id)
     {
-        
+        $category = Category::find($id);
+        return response()->json([
+            'category' => $category
+        ]);
     }
 
     /**
@@ -108,7 +114,22 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $category = Category::where("id", $request->id)
+        //         ->update([
+                    
+        //         ]);
+
+                $category = tap(DB::table('categories')->where('id', $id))
+                ->update([
+                    'name' => $request->category_name,
+                    'slug' => \Str::slug($request->category_name, '-'),
+                    'description' => $request->category_description
+                ])
+                ->first();
+        return response()->json([
+            'status' => true,
+            'category' => $category
+        ]);
     }
 
     /**
@@ -119,6 +140,10 @@ class AdminCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id);
+        $category = Category::where('id',$id)->delete();
+        return response()->json([
+            'status' => true
+        ]);
     }
 }

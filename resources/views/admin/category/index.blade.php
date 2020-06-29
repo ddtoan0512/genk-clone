@@ -98,7 +98,6 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
                         <button type="submit" class="btn btn-primary" value="add" id="btnSaveCategory">Lưu</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -120,6 +119,7 @@
         $('.dataTables_length').addClass('bs-select');
 
         $('#createCategory').click(function () {
+            $('#modelLabel').text("Thêm danh mục");
             $('#kt_modal_cate').modal('show');
             $("#category_form").trigger("reset");
             $('#btnSaveCategory').val("add");
@@ -156,7 +156,7 @@
         $('body').on('click', '.removeCate', function (e) {
             e.preventDefault();
             var categoryId = $(this).data('id');
-            var currentRow = $(this);
+            // var el = this;
             if (confirm("Bạn có chắc chắn muốn xoá !")) {
                 $.ajax({
                     url: "/admin/category/delete/" + categoryId,
@@ -168,8 +168,8 @@
                                 '',
                                 'success'
                             );
-                            // currentRow.parent().parent().remove();
-                            // location.reload();
+                            // $(el).closest( "tr" ).remove();Z
+                            location.reload();
                         }
                     }
                 })
@@ -180,8 +180,6 @@
         $('body').on('click', '.updateCate', function (e) {
             var categoryId = $(this).data('id');
             var currentRow = $(this).parent().parent();
-
-            // console.log(currentRow);
 
             $("#category_form").trigger("reset");
             $('#kt_modal_cate').modal('show');
@@ -209,21 +207,18 @@
                                     '',
                                     'success'
                                 );
-                                console.log(res.category);
-
                                 var html = "<tr>";
                                 html += "<td>" + res.category.id + "</td>";
                                 html += "<td>" + res.category.name + "</td>";
                                 html += "<td>" + res.category.slug + "</td>";
                                 html += "<td>" + res.category.description + "</td>";
                                 html += `<td>
-                                    <a href="" type="button" class="removeCate" data-id="${res.category.id}"><i class="fa fa-trash"
-                                            style="font-size: 20px; color: red"></i></a>
-                                    <a href="" type="button" class="updateCate" data-id="${res.category.id}"><i
-                                            class="fa fa-edit ml-3" style="font-size: 20px"></i></a>
-                                </td>`;
+								<a href="" type="button" class="removeCate" data-id="${res.category.id}"><i class="fa fa-trash"
+										style="font-size: 20px; color: red"></i></a>
+								<a href="" type="button" class="updateCate" data-id="${res.category.id}"><i
+										class="fa fa-edit ml-3" style="font-size: 20px"></i></a>
+							</td>`;
                                 html += "</tr>";
-
                                 currentRow.replaceWith(html);
                                 $('#kt_modal_cate').modal('hide');
                             }
@@ -232,11 +227,7 @@
                 })
             }
         });
-
     });
-
-
-
     //declare function
     function addRowToDatatable(data) {
         $('#table_category').DataTable().row.add([
@@ -245,7 +236,7 @@
             data.slug,
             data.description,
             `<a href="" type="button" class="removeCate" data-id="${data.id}"><i class="fa fa-trash" style="font-size: 20px; color: red"></i></a>
-            <a href="" type="button" class="updateCate" data-id="${data.id}"><i class="fa fa-edit ml-3" style="font-size: 20px"></i></a>`
+		<a href="" type="button" class="updateCate" data-id="${data.id}"><i class="fa fa-edit ml-3" style="font-size: 20px"></i></a>`
         ]).draw();
     }
 

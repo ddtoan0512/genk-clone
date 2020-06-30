@@ -58,11 +58,11 @@ class AdminCategoryController extends Controller
         
         $validator = validator()->make($request->all(), $rules, $messages);
         
-         if($validator->fails()){
+        if($validator->fails()){
             return response()->json([
                 'status' => false,
                 'message' => $validator->errors(),
-            ]);
+        ]);
 
         }
 

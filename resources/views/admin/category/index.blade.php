@@ -151,7 +151,6 @@
                 })
             }
         })
-
         // delete category
         $('body').on('click', '.removeCate', function (e) {
             e.preventDefault();
@@ -168,14 +167,13 @@
                                 '',
                                 'success'
                             );
-                            // $(el).closest( "tr" ).remove();Z
+                            // $(el).closest( "tr" ).remove();
                             location.reload();
                         }
                     }
                 })
             }
         });
-
         // update category
         $('body').on('click', '.updateCate', function (e) {
             var categoryId = $(this).data('id');

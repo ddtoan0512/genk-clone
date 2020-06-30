@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin'], function(){
 
     Route::group(['prefix' => 'post'], function(){
         Route::get('/', 'Admin\AdminPostController@index')->name('admin.post.index');
+        Route::get('/create', 'Admin\AdminPostController@create')->name('admin.post.create');
         Route::post('/create', 'Admin\AdminPostController@store')->name('admin.post.store');
         Route::get('/{id}', 'Admin\AdminPostController@edit')->name('admin.post.edit');
         Route::put('/update/{id}', 'Admin\AdminPostController@update')->name('admin.post.update');

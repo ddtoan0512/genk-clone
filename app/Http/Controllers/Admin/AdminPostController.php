@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
+use App\Post;
 use Illuminate\Http\Request;
+use Psy\Util\Str;
 
 class AdminPostController extends Controller
 {
@@ -14,7 +17,9 @@ class AdminPostController extends Controller
      */
     public function index()
     {
-        return view('admin.post.index');
+        $categories = Category::all();
+        $posts = Post::all();
+        return view('admin.post.index', compact('categories', 'posts'));
     }
 
     /**
@@ -24,7 +29,8 @@ class AdminPostController extends Controller
      */
     public function create()
     {
-        
+        $categories = Category::all();
+        return view('admin.post.create', compact('categories'));
     }
 
     /**
@@ -35,7 +41,18 @@ class AdminPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $post = new Post();
+        $post->title = $request->title;
+        $post->slug = \Str::slug($request->title, '-');
+        $post->description = $request->description;
+        $post->content = $request->content;
+        $post->user_id = 1;
+        $post->category_id = $request->category;
+        $post->hot = $request->has('hot') ? 1 : 0;
+$post->save();
+
+        return \redirect('/admin/post');
     }
 
     /**

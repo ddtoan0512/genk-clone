@@ -27,8 +27,9 @@
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
-                    <a href="{{ route('admin.post.create') }}" class="btn btn-bold btn-label-brand btn-sm"><i class="la la-plus"></i>
-                        Thêm bài viết</a>
+                        <a href="{{ route('admin.post.create') }}" class="btn btn-bold btn-label-brand btn-sm"><i
+                                class="la la-plus"></i>
+                            Thêm bài viết</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +43,7 @@
                         <th class="sorting">ID</th>
                         <th class="sorting">Tiêu đề</th>
                         <th class="sorting">Danh mục</th>
-                        <th class="sorting">Tác giả</th>
+                        <th class="sorting">Người đăng</th>
                         <th class="sorting">Trạng thái</th>
                         <th class="sorting">Action</th>
                     </tr>
@@ -50,17 +51,24 @@
                 <tbody>
                     @foreach ($posts as $post)
                     <tr id="cate{{$post->id}}">
-                    <td>{{ $post->id }}</td>
-                    <td>{{ $post->title }}</td>
-                    <td>{{ $post->category->name }}</td>
-                    <td>{{ $post->user->name }}</td>
-                    <td>{{ $post->status }}</td>
-                    <td>
-                        <a href="" type="button" class="removePost" data-id="{{ $post->id}}"><i class="fa fa-trash"
-                                style="font-size: 20px; color: red"></i></a>
-                        <a href="" type="button" class="updatePost" data-id="{{ $post->id}}"><i class="fa fa-edit ml-3"
-                                style="font-size: 20px"></i></a>
-                    </td>
+                        <td>{{ $post->id }}</td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->category->name }}</td>
+                        <td>{{ $post->user->name }}</td>
+                        <td>
+                            @if ($post->status === 1)
+                            <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill">Được xuất
+                                bản</span>
+                            @else
+                            <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill">Chưa được xuất bản</span>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="" type="button" class="removePost" data-id="{{ $post->id}}"><i class="fa fa-trash"
+                                    style="font-size: 20px; color: red"></i></a>
+                            <a href="" type="button" class="updatePost" data-id="{{ $post->id}}"><i
+                                    class="fa fa-edit ml-3" style="font-size: 20px"></i></a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

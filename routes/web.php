@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin'], function(){
+Route::post('/test', function(Request $request){
+    dd($request);
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
     Route::get('/', 'Admin\AdminCategoryController@index')->name('admin.home');
 

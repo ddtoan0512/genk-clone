@@ -81,6 +81,7 @@
 </div>
 <!-- end:: Content  -->
 
+@if(isset($post))
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -97,6 +98,7 @@
         </div>
     </div>
 </div>
+@endif
 @section('script')
 
 @include('components.admin.message')

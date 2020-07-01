@@ -1,10 +1,22 @@
 <div class="container-fluid d-flex navbar-top">
     <div class="container">
-        <ul>
-            <li>GAMEK</li>
-            <li>KENH14</li>
-            <li>CAFEBIZ</li>
-        </ul>
+        <div class="row">
+
+            <div class="col-8">
+                <ul>
+                    <li>GAMEK</li>
+                    <li>KENH14</li>
+                    <li>CAFEBIZ</li>
+                </ul>
+            </div>
+            <div class="col-4 d-flex">
+                @if (Auth::check())
+            <li><a style="color: #CCC" href="/admin">Xin chào <span class="text-white">{{ Auth::user()->name }} </span></a></li>
+                @else
+                <li><a class="text-white" href="/login">Đăng nhập / Đăng ký</a></li>
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-light" id="navbar-bottom">
@@ -44,12 +56,12 @@
                     </div>
                 </li> --}}
             </ul>
-            <form class="form-inline my-2 my-lg-0" style="padding-left: 10px">
+            {{-- <form class="form-inline my-2 my-lg-0" style="padding-left: 10px">
                 <input class="form-control mr-sm-2" type="search" placeholder="Nhập nội dung tìm kiếm..."
                     style="width: 210px;" aria-label="Search">
                 <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search text-white"
                         style="font-size: 24px;"></i></button>
-            </form>
+            </form> --}}
         </div>
     </div>
 </nav>

@@ -19,11 +19,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
 
     <!--begin::Base Path (base relative path for assets of this page) -->
-    <base href="../../../../">
 
     <!--end::Base Path -->
     <meta charset="utf-8" />
-    <title>Metronic | Login Page 2</title>
+    <title>Metronic | Login Page v3</title>
     <meta name="description" content="Login page example">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -44,7 +43,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--end::Fonts -->
 
     <!--begin::Page Custom Styles(used by this page) -->
-    <link href="./assets/css/demo1/pages/general/login/login-2.css" rel="stylesheet" type="text/css" />
+    <link href="./assets/css/demo1/pages/general/login/login-3.css" rel="stylesheet" type="text/css" />
 
     <!--end::Page Custom Styles -->
 
@@ -117,29 +116,38 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!-- begin:: Page -->
     <div class="kt-grid kt-grid--ver kt-grid--root">
-        <div class="kt-grid kt-grid--hor kt-grid--root kt-login kt-login--v2 kt-login--signin" id="kt_login">
+        <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor"
-                style="background-image: url(./assets/media//bg/bg-1.jpg);">
+                style="background-image: url(./assets/media//bg/bg-3.jpg);">
                 <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
                     <div class="kt-login__container">
                         <div class="kt-login__logo">
                             <a href="#">
-                                <img src="./assets/media/logos/logo-mini-2-md.png">
+                                <img src="./assets/media/logos/logo-5.png">
                             </a>
                         </div>
                         <div class="kt-login__signin">
                             <div class="kt-login__head">
-                                <h3 class="kt-login__title">Đăng nhập hệ thống</h3>
+                                <h3 class="kt-login__title">Sign In To Admin</h3>
                             </div>
-                            <form class="kt-form" method="POST">
+                            @error('username')
+                            <span >
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            @error('password')
+                            <span >
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <form class="kt-form" method="POST" action="{{ route('login') }}">
                                 @csrf
-
                                 <div class="input-group">
-                                    <input class="form-control" type="text" placeholder="Tên đăng nhập" name="username">
+                                    <input class="form-control" type="text" placeholder="Username" name="username"
+                                        autocomplete="off">
                                 </div>
-
                                 <div class="input-group">
-                                    <input class="form-control" type="password" placeholder="Mật khẩu" name="password">
+                                    <input class="form-control" type="password" placeholder="Password" name="password">
                                 </div>
                                 <div class="row kt-login__extra">
                                     <div class="col">
@@ -149,79 +157,40 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </label>
                                     </div>
                                     <div class="col kt-align-right">
-                                        <a href="javascript:;" id="kt_login_forgot"
-                                            class="kt-link kt-login__link">Quên mật khẩu ?</a>
+                                        <a href="javascript:;" id="kt_login_forgot" class="kt-login__link">Forget
+                                            Password ?</a>
                                     </div>
                                 </div>
                                 <div class="kt-login__actions">
-                                    <button type="submit" class="btn btn-pill kt-login__btn-primary">Đăng nhập</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="kt-login__signup">
-                            <div class="kt-login__head">
-                                <h3 class="kt-login__title">Đăng ký</h3>
-                                <div class="kt-login__desc">Enter your details to create your account:</div>
-                            </div>
-                            <form class="kt-login__form kt-form" action="">
-                                <div class="input-group">
-                                    <input class="form-control" type="text" placeholder="Fullname" name="fullname">
-                                </div>
-                                <div class="input-group">
-                                    <input class="form-control" type="text" placeholder="Email" name="email"
-                                        autocomplete="off">
-                                </div>
-                                <div class="input-group">
-                                    <input class="form-control" type="password" placeholder="Password" name="password">
-                                </div>
-                                <div class="input-group">
-                                    <input class="form-control" type="password" placeholder="Confirm Password"
-                                        name="rpassword">
-                                </div>
-                                <div class="row kt-login__extra">
-                                    <div class="col kt-align-left">
-                                        <label class="kt-checkbox">
-                                            <input type="checkbox" name="agree">I Agree the <a href="#"
-                                                class="kt-link kt-login__link kt-font-bold">terms and conditions</a>.
-                                            <span></span>
-                                        </label>
-                                        <span class="form-text text-muted"></span>
-                                    </div>
-                                </div>
-                                <div class="kt-login__actions">
-                                    <button id="kt_login_signup_submit" type="submit"
-                                        class="btn btn-pill kt-login__btn-primary">Đăng ký</button>&nbsp;&nbsp;
-
-                                    <button id="kt_login_signup_cancel"
-                                        class="btn btn-pill kt-login__btn-secondary">Cancel</button>
+                                    <button class="btn btn-brand btn-elevate kt-login__btn-primary">Sign In</button>
                                 </div>
                             </form>
                         </div>
                         <div class="kt-login__forgot">
                             <div class="kt-login__head">
-                                <h3 class="kt-login__title">Quên mật khẩu ?</h3>
-                                <div class="kt-login__desc">Nhập email để thiết lập lại mật khẩu</div>
+                                <h3 class="kt-login__title">Forgotten Password ?</h3>
+                                <div class="kt-login__desc">Enter your email to reset your password:</div>
                             </div>
                             <form class="kt-form" action="">
-                                <div class="input-group">
+                                @csrf
+                                <div class="input-group mb-2">
                                     <input class="form-control" type="text" placeholder="Email" name="email"
                                         id="kt_email" autocomplete="off">
                                 </div>
                                 <div class="kt-login__actions">
                                     <button id="kt_login_forgot_submit"
-                                        class="btn btn-pill kt-login__btn-primary">Lấy lại mật khẩu</button>&nbsp;&nbsp;
+                                        class="btn btn-brand btn-elevate kt-login__btn-primary">Request</button>&nbsp;&nbsp;
                                     <button id="kt_login_forgot_cancel"
-                                        class="btn btn-pill kt-login__btn-secondary">Quay lại</button>
+                                        class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
                                 </div>
                             </form>
                         </div>
                         <div class="kt-login__account">
                             <span class="kt-login__account-msg">
-                                Chưa có tài khoản ?
-                            </span>&nbsp;&nbsp;
-                            <a href="javascript:;" id="kt_login_signup"
-                                class="kt-link kt-link--light kt-login__account-link">Đăng ký ngay</a>
-
+                                Don't have an account yet ?
+                            </span>
+                            &nbsp;&nbsp;
+                            <a href="/register" class="kt-login__account-link">Sign Up!</a>
                         </div>
                     </div>
                 </div>

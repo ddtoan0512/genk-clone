@@ -6,7 +6,6 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
-use Psy\Util\Str;
 
 class AdminPostController extends Controller
 {

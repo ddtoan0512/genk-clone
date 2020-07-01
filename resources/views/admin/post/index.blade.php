@@ -60,26 +60,46 @@
                             <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill">Được xuất
                                 bản</span>
                             @else
-                            <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill">Chưa được xuất bản</span>
+                            <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill">Chưa được xuất
+                                bản</span>
                             @endif
                         </td>
                         <td>
-                            <a href="" type="button" class="removePost" data-id="{{ $post->id}}"><i class="fa fa-trash"
-                                    style="font-size: 20px; color: red"></i></a>
-                            <a href="" type="button" class="updatePost" data-id="{{ $post->id}}"><i
-                                    class="fa fa-edit ml-3" style="font-size: 20px"></i></a>
+                            <a href="{{ route('admin.post.edit', $post->id) }}" type="button"><i class="fa fa-edit ml-3"
+                                    style="font-size: 20px"></i></a>
+                            <button class="btn " data-toggle="modal" data-target="#confirm-delete">
+                                <i class="fa fa-trash" style="font-size: 20px; color: red"></i>
+                            </button>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-
             <!--end: Datatable -->
         </div>
     </div>
 </div>
+<!-- end:: Content  -->
 
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Xác nhận xoá bài viết
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xoá bài viết {{$post->title}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Huỷ</button>
+                <a href="{{ route('admin.post.remove', $post->id) }}" class="btn btn-danger btn-ok">Xoá bài viết</a>
+            </div>
+        </div>
+    </div>
+</div>
 @section('script')
+
+@include('components.admin.message')
 
 <script>
     $(function () {
@@ -88,11 +108,9 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         })
-
         $('#table_post').DataTable();
         $('#table_post_info').hide();
         $('.dataTables_length').addClass('bs-select');
-
     });
 
 </script>
@@ -103,8 +121,6 @@
 
 <!--begin::Page Scripts(used by this page) -->
 <script src="./assets/js/demo1/pages/crud/datatables/basic/paginations.js" type="text/javascript"></script>
-
-
 <!--end::Page Scripts -->
 
 @endsection

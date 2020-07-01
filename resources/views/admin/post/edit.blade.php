@@ -21,42 +21,43 @@
                     <i class="kt-font-brand flaticon2-line-chart"></i>
                 </span>
                 <h3 class="kt-portlet__head-title">
-                    Thêm bài viết
+                    Cập nhật bài viết
                 </h3>
             </div>
         </div>
         <div class="kt-portlet__body">
-            <form id="post_form" method="POST" class="needs-validation">
+        <form id="post_form" method="POST" action="{{ route("admin.post.update", $post->id) }}" class="needs-validation">
                 @csrf
+                @method("PUT")
                 <div class="form-group">
                     <label for="title" class="form-control-label">Tên bài viết:</label>
-                <input type="text" class="form-control" required id="title" name="title">
+                <input type="text" class="form-control" required id="title" value="{{ $post->title  }}" name="title">
                 </div>
                 <div class="form-group">
                     <label for="description" class="form-control-label">Mô tả:</label>
-                    <input type="text" class="form-control" required id="description" name="description">
+                <input type="text" class="form-control" required id="description" value="{{ $post->title }}" name="description">
                 </div>
                 <div class="form-group">
                     <label for="category">Danh mục:</label>
                     <select class="form-control" name="category" id="category">
                         @foreach ($categories as $cate)
-                        <option value="{{ $cate->id }}">{{ $cate->name }}</option>
+                        <option value="{{ $cate->id }}" {{ $cate->id === $post->category_id ? "selected" : "" }}>{{ $cate->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="content" class="form-control-label">Nội dung:</label>
-                    <textarea class="form-control" id="content" name="content"></textarea>
+                <textarea class="form-control" id="content" name="content">{{ $post->content }}</textarea>
                 </div>
                 <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" name="hot" id="hot">
+                    <input class="form-check-input" {{ $post->hot === 1 ? 'checked' : 'f' }} type="checkbox" name="hot" id="hot">
                     <label class="form-check-label" for="hot">
                         Nổi bật
                     </label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
-                    <button type="submit" class="btn btn-primary" id="btnSavePost">Lưu</button>
+                    <button type="submit" class="btn btn-primary" value="add" id="btnSavePost">Lưu</button>
                 </div>
             </form>
         </div>

@@ -50,7 +50,7 @@ class AdminPostController extends Controller
         $post->user_id = 1;
         $post->category_id = $request->category;
         $post->hot = $request->has('hot') ? 1 : 0;
-$post->save();
+        $post->save();
 
         return \redirect('/admin/post');
     }
@@ -63,7 +63,7 @@ $post->save();
      */
     public function show($id)
     {
-        //
+        // 
     }
 
     /**
@@ -74,7 +74,9 @@ $post->save();
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $categories = Category::all();
+        return view('admin.post.edit', compact('post', 'categories'));
     }
 
     /**
@@ -86,7 +88,16 @@ $post->save();
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($id, $request);
+        Post::where('id', $id)->update([
+            'title' => $request->title,
+            'slug' => \Str::slug($request->title, '-'),
+            'description' => $request->description,
+            'content' => $request->content,
+            'category_id' => $request->category,
+            'hot' => $request->has('hot') ? 1 : 0
+        ]);
+        return \redirect('/admin/post')->with('success', "Cập nhật bài viết thành công");
     }
 
     /**
@@ -97,6 +108,9 @@ $post->save();
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+
+        return \redirect('/admin/post')->with('success', 'Xoá bài viết thành công!');
     }
 }

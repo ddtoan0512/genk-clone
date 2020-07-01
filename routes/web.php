@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/create', 'Admin\AdminCategoryController@store')->name('admin.category.store');
         Route::get('/{id}', 'Admin\AdminCategoryController@edit')->name('admin.category.edit');
         Route::put('/update/{id}', 'Admin\AdminCategoryController@update')->name('admin.category.update');
-        Route::delete('/delete/{id}', 'Admin\AdminCategoryController@destroy')->name('admin.category.remove');
+        Route::get('/delete/{id}', 'Admin\AdminCategoryController@destroy')->name('admin.category.remove');
     });
 
     Route::group(['prefix' => 'post'], function(){
@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/create', 'Admin\AdminPostController@store')->name('admin.post.store');
         Route::get('/{id}', 'Admin\AdminPostController@edit')->name('admin.post.edit');
         Route::put('/update/{id}', 'Admin\AdminPostController@update')->name('admin.post.update');
-        Route::delete('/delete/{id}', 'Admin\AdminPostController@destroy')->name('admin.post.remove');
+        Route::get('/delete/{id}', 'Admin\AdminPostController@destroy')->name('admin.post.remove');
     });
 
     Route::group(['prefix' => 'user'], function(){
@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/create', 'Admin\AdminUserController@store')->name('admin.user.store');
         Route::get('/{id}', 'Admin\AdminUserController@edit')->name('admin.user.edit');
         Route::put('/update/{id}', 'Admin\AdminUserController@update')->name('admin.user.update');
-        Route::delete('/delete/{id}', 'Admin\AdminUserController@destroy')->name('admin.user.remove');
+        Route::get('/delete/{id}', 'Admin\AdminUserController@destroy')->name('admin.user.remove');
     });
 
 });

@@ -26,7 +26,8 @@
                 </div>
             </div>
             <div class="kt-portlet__body">
-                <form id="post_form" method="POST" enctype="multipart/form-data" action="{{ route("admin.post.update", $post->id) }}"
+                <form id="post_form" method="POST" enctype="multipart/form-data"
+                      action="{{ route("admin.post.update", $post->id) }}"
                       class="needs-validation">
                     @csrf
                     @method("PUT")
@@ -40,16 +41,20 @@
                         <input type="text" class="form-control" required id="description" value="{{ $post->title }}"
                                name="description">
                     </div>
-                    <div class="">
+                    <div class="form-group">
                         <label class="form-control-label">Thumbnail:</label>
                     </div>
+                    <div class="form-group">
+                        <img src="{{ asset('images/upload/'.$post->thumbnail) }}" class="img-thumbnail" width="200"/>
+                        <input type="hidden" name="hidden_image" value="{{ $post->thumbnail }}"/>
+                    </div>
+
                     <div class="custom-file">
+
                         <input type="file" class="custom-file-input" name="thumbnail" id="customFile">
                         <label class="custom-file-label" for="customFile">Choose file</label>
-                        <img src="{{ asset('images/upload/'.$post->thumbnail) }}" class="img-thumbnail" width="100" />
-                        <input type="hidden" name="hidden_image" value="{{ $post->thumbnail }}" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="category">Danh mục:</label>
                         <select class="form-control" name="category" id="category">
                             @foreach ($categories as $cate)

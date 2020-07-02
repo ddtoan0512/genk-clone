@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index($slug){
-        if(isset($slug)){
 
-        }
         $category = Category::where([ 'slug' => $slug ])->first();
 
         $posts = Post::where([

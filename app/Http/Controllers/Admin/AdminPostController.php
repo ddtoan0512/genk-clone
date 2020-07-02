@@ -35,20 +35,27 @@ class AdminPostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $post = new Post();
-        $post->title = $request->title;
-        $post->slug = \Str::slug($request->title, '-');
-        $post->description = $request->description;
-        $post->content = $request->content;
+        $post->title = $request->input('title');
+        $post->slug = \Str::slug($request->input('title'), '-');
+        $post->description = $request->input('description');
+        $post->content = $request->input('content');
         $post->user_id = 1;
-        $post->category_id = $request->category;
+        $post->category_id = $request->input('category');
         $post->hot = $request->has('hot') ? 1 : 0;
+        $post->thumbnail = '';
+        if ($request->hasFile('thumbnail')) {
+            $thumbnailName = time() . '.' . \request()->file('thumbnail')->getClientOriginalExtension();
+            \request()->file('thumbnail')->move(public_path('images/upload'), $thumbnailName);
+
+            $post->thumbnail = $thumbnailName;
+        }
+
         $post->save();
 
         return \redirect('/admin/post');
@@ -57,18 +64,18 @@ class AdminPostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        // 
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -81,20 +88,20 @@ class AdminPostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         // dd($id, $request);
         Post::where('id', $id)->update([
-            'title' => $request->title,
-            'slug' => \Str::slug($request->title, '-'),
-            'description' => $request->description,
-            'content' => $request->content,
-            'category_id' => $request->category,
-            'hot' => $request->has('hot') ? 1 : 0
+            'title'       => $request->input('title'),
+            'slug'        => \Str::slug($request->title, '-'),
+            'description' => $request->input('description'),
+            'content'     => $request->input('content'),
+            'category_id' => $request->input('category'),
+            'hot'         => $request->has('hot') ? 1 : 0
         ]);
         return \redirect('/admin/post')->with('success', "Cập nhật bài viết thành công");
     }
@@ -102,7 +109,7 @@ class AdminPostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

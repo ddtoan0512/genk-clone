@@ -39,7 +39,7 @@
         </div>
       </section>
       <section id="home-slide">
-          
+
       </section>
       <section id="hot-most-news">
         <div class="container p-0">

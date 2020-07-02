@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="kt-portlet__body">
-            <form id="post_form" method="POST" class="needs-validation">
+            <form id="post_form" method="POST" enctype="multipart/form-data" class="needs-validation">
                 @csrf
                 <div class="form-group">
                     <label for="title" class="form-control-label">Tên bài viết:</label>
@@ -36,7 +36,14 @@
                     <label for="description" class="form-control-label">Mô tả:</label>
                     <input type="text" class="form-control" required id="description" name="description">
                 </div>
-                <div class="form-group">
+                <div class="">
+                    <label class="form-control-label">Thumbnail:</label>
+                </div>
+                <div class="custom-file">
+                    <input type="file" required class="custom-file-input" name="thumbnail" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <div class="form-group mt-5">
                     <label for="category">Danh mục:</label>
                     <select class="form-control" name="category" id="category">
                         @foreach ($categories as $cate)

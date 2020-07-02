@@ -24,7 +24,7 @@ class AdminCategoryController extends Controller
                 'data' => $categories
             ]);
         }
-        
+
         return view('admin.category.index', compact('categories'));
     }
 
@@ -55,9 +55,9 @@ class AdminCategoryController extends Controller
             'name.required' => "Tên danh mục không được để trống",
             'description.required' => "Mô tả danh mục không được để trống"
         ];
-        
+
         $validator = validator()->make($request->all(), $rules, $messages);
-        
+
         if($validator->fails()){
             return response()->json([
                 'status' => false,
@@ -67,9 +67,9 @@ class AdminCategoryController extends Controller
         }
 
         $category = new Category();
-				$category->name = $request->name;
-				$category->slug = \Str::slug($request->name, '-');
-				$category->description = $request->description;
+				$category->name = $request->input('name');
+				$category->slug = \Str::slug($request->input('name'), '-');
+				$category->description = $request->input('description');
 				$category->save();
 
         return response()->json([
@@ -116,14 +116,14 @@ class AdminCategoryController extends Controller
     {
         // $category = Category::where("id", $request->id)
         //         ->update([
-                    
+
         //         ]);
 
                 $category = tap(DB::table('categories')->where('id', $id))
                 ->update([
-                    'name' => $request->category_name,
-                    'slug' => \Str::slug($request->category_name, '-'),
-                    'description' => $request->category_description
+                    'name' => $request->input('category_name'),
+                    'slug' => \Str::slug($request->input('category_name'), '-'),
+                    'description' => $request->input('category_description')
                 ])
                 ->first();
         return response()->json([

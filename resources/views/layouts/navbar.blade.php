@@ -32,18 +32,13 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="text-white" href="#">MOBILE <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item ">
-                    <a class="text-white" href="#">TIN ICT</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="text-white" href="#">INTERNET</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="text-white" href="#">KHÁM PHÁ</a>
-                </li>
+                @if(isset($categories))
+                @foreach ($categories as $cate)
+                    <li class="nav-item ">
+                    <a class="text-white" href="/danh-muc/{{ route('get.list.product', $cate->slug) }}">{{ $cate->name }}</a>
+                    </li>
+                @endforeach
+                @endif
                 {{-- <li class="nav-item dropdown">
                     <a class="fas fa-bars text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">

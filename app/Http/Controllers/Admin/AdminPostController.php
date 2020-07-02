@@ -94,15 +94,22 @@ class AdminPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($id, $request);
+        $thumbnailName = $request->input('hidden_image');
+        if ($request->hasFile('thumbnail')) {
+            $thumbnailName = time() . '.' . \request()->file('thumbnail')->getClientOriginalExtension();
+            \request()->file('thumbnail')->move(public_path('images/upload'), $thumbnailName);
+        }
+
         Post::where('id', $id)->update([
             'title'       => $request->input('title'),
             'slug'        => \Str::slug($request->title, '-'),
             'description' => $request->input('description'),
             'content'     => $request->input('content'),
             'category_id' => $request->input('category'),
-            'hot'         => $request->has('hot') ? 1 : 0
+            'hot'         => $request->has('hot') ? 1 : 0,
+            'thumbnail' => $thumbnailName
         ]);
+
         return \redirect('/admin/post')->with('success', "Cập nhật bài viết thành công");
     }
 

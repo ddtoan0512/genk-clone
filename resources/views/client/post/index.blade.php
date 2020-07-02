@@ -20,15 +20,11 @@
                         <div class="col-lg-8">
                             <div class="card border-0">
                                 <img class="card-img-top rounded-0"
-                                     src="https://genk.mediacdn.vn/zoom/470_289/139269124445442048/2020/6/15/photo1592154679022-15921546800741698467089.png"
+                                     src="{{ asset('images/upload/'.$posts[0]->thumbnail)  }}"
                                      alt="Card image cap">
                                 <div class="card-body px-0">
-                                    <h4 class="card-title"><a href="#" class="text-dark text-decoration-none"><strong>Nắng
-                                                nóng thế
-                                                này,không mua điều hòa Nhật thì nên chọn hãng nào?</strong></a></h4>
-                                    <p class="card-text">Ai cũng mê hàng Nhật rồi, nhưng ngoài những Daikin, Mitsubishi
-                                        hay Panasonic ra thì
-                                        còn thương hiệu điều hòa nào đáng cân nhắc nữa?</p>
+                                    <h4 class="card-title"><a href="#" class="text-dark text-decoration-none"><strong>{{ $posts[0]->title }}</strong></a></h4>
+                                    <p class="card-text">{{ $posts[0]->description  }}</p>
                                 </div>
                             </div>
                         </div>
@@ -49,78 +45,6 @@
                 <section id="home-slide">
 
                 </section>
-                <section id="hot-most-news">
-                    <div class="container p-0">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="hot-news">
-                                    <div class="tab">
-                                        TIN NỔI BẬT
-                                    </div>
-                                    <div class="first-item pt-3">
-                                        <div class="card border-0" style="width: 28rem">
-                                            <a href="#"><img class="card-img-top pb-2"
-                                                             src="https://genk.mediacdn.vn/zoom/380_240/139269124445442048/2020/6/8/photo1591626425591-15916264259061332634188.jpg"
-                                                             alt="Card image cap"></a>
-                                            <div class="card-body p-0">
-                                                <h4 class="card-title news-title"><a href="#">Huawei đang đứng trước
-                                                        nguy cơ bị hủy diệt</a></h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="hot-news-item">
-                                        <a href="#">Vì sao Vsmart đặt mục tiêu chinh phục thị trường Mỹ khi các ông lớn
-                                            smartphone trong top 6
-                                            còn chưa dám?</a>
-                                    </div>
-                                    <div class="hot-news-item">
-                                        <a href="#">Ngay sau khi Tim Cook công khai chê tốc độ Android thua kém iPhone
-                                            SE, Apple đã chính thức
-                                            tham gia "cuộc đua số"</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="most-view-list">
-                                    {{-- <div class="tab">
-                                      ĐỌC NHIỀU
-                                    </div> --}}
-                                    <div class="most-view-item">
-                                        <a href="#">Ngay sau khi Tim Cook công khai chê tốc độ Android thua kém iPhone
-                                            SE, Apple đã chính thức
-                                            tham gia "cuộc đua số"</a>
-                                    </div>
-                                    <div class="most-view-item">
-                                        <a href="#">Ngay sau khi Tim Cook công khai chê tốc độ Android thua kém iPhone
-                                            SE, Apple đã chính thức
-                                            tham gia "cuộc đua số"</a>
-                                    </div>
-                                    <div class="most-view-item">
-                                        <a href="#">Ngay sau khi Tim Cook công khai chê tốc độ Android thua kém iPhone
-                                            SE, Apple đã chính thức
-                                            tham gia "cuộc đua số"</a>
-                                    </div>
-                                    <div class="most-view-item">
-                                        <a href="#">Ngay sau khi Tim Cook công khai chê tốc độ Android thua kém iPhone
-                                            SE, Apple đã chính thức
-                                            tham gia "cuộc đua số"</a>
-                                    </div>
-                                    <div class="most-view-item">
-                                        <a href="#">Ngay sau khi Tim Cook công khai chê tốc độ Android thua kém iPhone
-                                            SE, Apple đã chính thức
-                                            tham gia "cuộc đua số"</a>
-                                    </div>
-                                    <div class="most-view-item">
-                                        <a href="#">Ngay sau khi Tim Cook công khai chê tốc độ Android thua kém iPhone
-                                            SE, Apple đã chính thức
-                                            tham gia "cuộc đua số"</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 <section id="news">
                     <div class="news-item">
                         <div class="news-thumb">

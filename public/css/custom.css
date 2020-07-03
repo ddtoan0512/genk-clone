@@ -198,6 +198,20 @@ h4:hover a {
   text-decoration: none;
 }
 
+.post-title {
+  padding-top: 15px;
+  height: 130px;
+}
+
+.post-title-border {
+  width: 80%;
+  border-bottom: 1px solid #CCC;
+}
+
+.post-content {
+  padding: 0 15px 0 15px;
+}
+
 @media screen and (max-width: 990px) {
   .ads-right {
     display: none;

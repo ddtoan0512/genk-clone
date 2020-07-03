@@ -35,7 +35,7 @@
                 @if(isset($categories))
                 @foreach ($categories as $cate)
                     <li class="nav-item ">
-                    <a class="text-white" href="{{ route('get.list.product', $cate->slug) }}">{{ $cate->name }}</a>
+                    <a class="text-white" href="{{ route('get.list.post', $cate->slug) }}">{{ $cate->name }}</a>
                     </li>
                 @endforeach
                 @endif

@@ -18,7 +18,8 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/danh-muc/{slug}', 'CategoryController@index')->name('get.list.product');
+Route::get('/c/{slug}', 'CategoryController@index')->name('get.list.post');
+Route::get('/p/{slug}-{fid}', 'PostController@show')->name('get.detail.post');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 

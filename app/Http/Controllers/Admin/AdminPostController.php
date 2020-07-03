@@ -51,11 +51,10 @@ class AdminPostController extends Controller
         $post->thumbnail = '';
         if ($request->hasFile('thumbnail')) {
             $thumbnailName = time() . '.' . \request()->file('thumbnail')->getClientOriginalExtension();
-            \request()->file('thumbnail')->move(public_path('images/upload'), $thumbnailName);
+            \request()->file('thumbnail')->move(public_path('images/upload/thumbnail'), $thumbnailName);
 
             $post->thumbnail = $thumbnailName;
         }
-
         $post->save();
 
         return \redirect('/admin/post');
@@ -97,7 +96,7 @@ class AdminPostController extends Controller
         $thumbnailName = $request->input('hidden_image');
         if ($request->hasFile('thumbnail')) {
             $thumbnailName = time() . '.' . \request()->file('thumbnail')->getClientOriginalExtension();
-            \request()->file('thumbnail')->move(public_path('images/upload'), $thumbnailName);
+            \request()->file('thumbnail')->move(public_path('images/upload/thumbnail'), $thumbnailName);
         }
 
         Post::where('id', $id)->update([
@@ -107,7 +106,7 @@ class AdminPostController extends Controller
             'content'     => $request->input('content'),
             'category_id' => $request->input('category'),
             'hot'         => $request->has('hot') ? 1 : 0,
-            'thumbnail' => $thumbnailName
+            'thumbnail'   => $thumbnailName
         ]);
 
         return \redirect('/admin/post')->with('success', "Cập nhật bài viết thành công");

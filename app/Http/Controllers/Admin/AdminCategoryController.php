@@ -19,7 +19,7 @@ class AdminCategoryController extends Controller
     {
         $categories = Category::all();
         // dd($categories);
-        if($request->ajax()){
+        if ($request->ajax()) {
             return response()->json([
                 'data' => $categories
             ]);
@@ -41,49 +41,49 @@ class AdminCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $rules = [
-            'name' => 'required',
+            'name'        => 'required',
             'description' => 'required'
         ];
 
         $messages = [
-            'name.required' => "Tên danh mục không được để trống",
+            'name.required'        => "Tên danh mục không được để trống",
             'description.required' => "Mô tả danh mục không được để trống"
         ];
 
         $validator = validator()->make($request->all(), $rules, $messages);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json([
-                'status' => false,
+                'status'  => false,
                 'message' => $validator->errors(),
-        ]);
+            ]);
 
         }
 
         $category = new Category();
-				$category->name = $request->input('name');
-				$category->slug = \Str::slug($request->input('name'), '-');
-				$category->description = $request->input('description');
-				$category->save();
+        $category->name = $request->input('name');
+        $category->slug = \Str::slug($request->input('name'), '-');
+        $category->description = $request->input('description');
+        $category->save();
 
         return response()->json([
-            'status' => true,
-						'message' => 'Thêm danh mục thành công',
-						'data' => $category
-				], 200);
+            'status'  => true,
+            'message' => 'Thêm danh mục thành công',
+            'data'    => $category
+        ], 200);
     }
 
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -94,12 +94,13 @@ class AdminCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $category = Category::find($id);
+
         return response()->json([
             'category' => $category
         ]);
@@ -108,8 +109,8 @@ class AdminCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -119,15 +120,16 @@ class AdminCategoryController extends Controller
 
         //         ]);
 
-                $category = tap(DB::table('categories')->where('id', $id))
-                ->update([
-                    'name' => $request->input('category_name'),
-                    'slug' => \Str::slug($request->input('category_name'), '-'),
-                    'description' => $request->input('category_description')
-                ])
-                ->first();
+        $category = tap(DB::table('categories')->where('id', $id))
+            ->update([
+                'name'        => $request->input('category_name'),
+                'slug'        => \Str::slug($request->input('category_name'), '-'),
+                'description' => $request->input('category_description')
+            ])
+            ->first();
+
         return response()->json([
-            'status' => true,
+            'status'   => true,
             'category' => $category
         ]);
     }
@@ -135,13 +137,13 @@ class AdminCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         // dd($id);
-        $category = Category::where('id',$id)->delete();
+        $category = Category::where('id', $id)->delete();
         return response()->json([
             'status' => true
         ]);

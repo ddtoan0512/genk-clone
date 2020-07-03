@@ -18,8 +18,8 @@ class CategoriesTableSeeder extends Seeder
             ['MOBILE', 'Tin tức điện thoại'],
             ['TIN ICT', 'Tin tức ICT'],
             ['INTERNET', 'Tin tức internet'],
-            ['Khám phá', 'Tin tức hay trên internet']
-        ];
+            ['KHÁM PHÁ', 'Tin tức hay trên internet']
+        ]; 
 
         foreach ($categories as $category){
             \App\Category::create([

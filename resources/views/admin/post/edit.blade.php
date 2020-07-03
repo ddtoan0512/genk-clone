@@ -41,11 +41,11 @@
                         <input type="text" class="form-control" required id="description" value="{{ $post->title }}"
                                name="description">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group m-0">
                         <label class="form-control-label">Thumbnail:</label>
                     </div>
                     <div class="form-group">
-                        <img src="{{ asset('images/upload/'.$post->thumbnail) }}" class="img-thumbnail" width="200"/>
+                        <img src="{{ asset('images/upload/thumbnail/'.$post->thumbnail) }}" class="img-thumbnail" width="200"/>
                         <input type="hidden" name="hidden_image" value="{{ $post->thumbnail }}"/>
                     </div>
 

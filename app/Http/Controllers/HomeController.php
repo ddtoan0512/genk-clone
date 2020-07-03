@@ -6,7 +6,7 @@ use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     /**
      * Create a new controller instance.
@@ -29,7 +29,6 @@ class HomeController extends Controller
         $posts = Post::all();
 
         $viewData = [
-            'categories' => $categories,
             'posts' => $posts
         ];
 

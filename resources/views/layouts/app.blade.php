@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Genkk</title>
+    <title id="genk-title">Genkk</title>
 
     <!-- Fonts -->
     {{-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> --}}
@@ -35,6 +35,7 @@
 
 
 <script src="{{ asset('js/app.js') }}"></script>
+@yield('script')
 </body>
 
 </html>

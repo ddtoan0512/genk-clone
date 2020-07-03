@@ -32,5 +32,9 @@
 
 <script src="{{ asset('js/carouselCustom.js') }}"></script>
 
+<script>
+    document.getElementById("genk-title").textContent="{{ $post->title }}";
+</script>
+
 {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 @endsection

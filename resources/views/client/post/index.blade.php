@@ -93,5 +93,12 @@
 
 <script src="{{ asset('js/carouselCustom.js') }}"></script>
 
+@section('script')
+
+<script>
+    document.getElementById("genk-title").textContent="{{ $category->name ." | ". $category->description }}";
+</script>
+
+@endsection
 
 @endsection

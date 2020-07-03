@@ -10,7 +10,7 @@ class CategoryController extends BaseController
 {
     public function index($slug){
 
-        $category = Category::where([ 'slug' => $slug ])->first();
+        $category = Category::where([ 'slug' => $slug ])->firstOrFail();
         $posts = Post::where([
             'category_id' => $category->id,
             'status' => 1

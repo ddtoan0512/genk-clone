@@ -34,13 +34,13 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card border-0 featured-news-right">
+                            <a href="{{ route('get.detail.post', [$posts[1]->slug, $posts[1]->id]) }}">
                             <img class="card-img-top rounded-0"
-                                src="https://genk.mediacdn.vn/zoom/222_289/139269124445442048/2020/6/15/photo1592206901297-15922069014211396764907.jpg"
-                                alt="Card image cap">
+                                src="{{ asset('images/upload/thumbnail/'.$posts[1]->thumbnail)  }}"
+                                alt="Card image cap"></a>
                             <div class="card-body">
-                                <h4 class="card-title"><a href="#" class="text-dark text-decoration-none"><strong>Vsmart
-                                            Max Pro" lộ
-                                            diện với chip Snapdragon 730, RAM 8GB</strong></a></h4>
+                                <h4 class="card-title"><a href="{{ route('get.detail.post', [$posts[1]->slug, $posts[1]->id]) }}" class="text-dark text-decoration-none"><strong>Vsmart
+                                    {{ $posts[1]->title  }}</strong></a></h4>
                             </div>
                         </div>
                     </div>
@@ -50,169 +50,27 @@
 
             </section>
             <section id="news">
-                <div class="news-item">
-                    <div class="news-thumb">
-                        <a href="#"><img
-                                src="https://genk.mediacdn.vn/zoom/250_155/139269124445442048/2020/6/16/photo1592299702395-15922997024781439654173.jpg"
-                                alt=""></a>
-                    </div>
-                    <div class="news-info">
-                        <div class="news-title">
-                            <h4><a href="#">Những bức ảnh có thể trả lời cho câu hỏi: Chuyện gì sẽ xảy ra nếu...</a>
-                            </h4>
+                @for ($i = 2; $i < count($posts); $i++)
+                    <div class="news-item">
+                        <div class="news-thumb">
+                            <a href="{{ route('get.detail.post', [$posts[$i]->slug, $posts[$i]->id]) }}"><img
+                                width="250"
+                                height="155"
+                                    src="{{ asset('images/upload/thumbnail/'.$posts[$i]->thumbnail) }}"
+                                    alt=""></a>
                         </div>
-                        <div class="news-category"><a href="#">Khám phá -</a><span class="text-muted"> 30 phút
-                                trước</span></div>
-                        <div class="news-desc">Chuyện gì sẽ xảy ra nếu bạn để chai nước ngọt ngoài nắng quá lâu, khử
-                            trùng tiền bằng
-                            lò vi sóng, hay...
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-thumb">
-                        <a href="#"><img
-                                src="https://genk.mediacdn.vn/zoom/250_155/139269124445442048/2020/6/16/photo1592258804276-15922588044231637042098.jpg"
-                                alt=""></a>
-                    </div>
-                    <div class="news-info">
-                        <div class="news-title">
-                            <h4><a href="#">Xiaomi ra mắt máy nước nóng bỏ túi Morfun: Kích thước nhỏ gọn, làm nóng
-                                    nhanh, giá 980.000
-                                    đồng</a></h4>
-                        </div>
-                        <div class="news-category"><a href="#">Đồ chơi số</a> - <span class="text-muted">30 phút
-                                trước</span>
-                        </div>
-                        <div class="news-desc">Với kích thước nhỏ gọn, máy nước nóng bỏ túi Morfun của Xiaomi có thể
-                            đựng vừa trong
-                            túi xách, hoàn...
+                        <div class="news-info">
+                            <div class="news-title">
+                                <h4><a href="{{ route('get.detail.post', [$posts[$i]->slug, $posts[$i]->id]) }}">{{$posts[$i]->title}}</a>
+                                </h4>
+                            </div>
+                        <div class="news-category"><a href="">Khám phá -</a><span class="text-muted"> 30 phút
+                                    trước</span></div>
+                            <div class="news-desc">{{ $posts[$i]->description }}
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-thumb">
-                        <a href="#"><img
-                                src="https://genk.mediacdn.vn/zoom/250_155/139269124445442048/2020/6/16/photo1592296749560-1592296749689321578425.png"
-                                alt=""></a>
-                    </div>
-                    <div class="news-info">
-                        <div class="news-title">
-                            <h4><a href="#">AirPods phát nổ trong khi đang gọi điện thoại khiến người dùng phải nhập
-                                    viện</a></h4>
-                        </div>
-                        <div class="news-category"><a href="#">Internet</a> - <span class="text-muted">30 phút
-                                trước</span></div>
-                        <div class="news-desc">Anh chàng kém may mắn này hiện đang phải đối mặt với chứng giảm thính
-                            lực do ảnh
-                            hưởng từ vụ nổ.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-thumb">
-                        <a href="#"><img
-                                src="https://genk.mediacdn.vn/zoom/250_155/139269124445442048/2020/6/16/photo1592298105370-1592298105497188379950.jpg"
-                                alt=""></a>
-                    </div>
-                    <div class="news-info">
-                        <div class="news-title">
-                            <h4><a href="#">HTC bất ngờ tái xuất với U20 5G và Desire 20 Pro: Hỗ trợ 5G, 4 camera,
-                                    pin khủng</a></h4>
-                        </div>
-                        <div class="news-category"><a href="#">Mobile</a> - <span class="text-muted">30 phút
-                                trước</span></div>
-                        <div class="news-desc">Có vẻ như mảng kinh doanh smartphone của HTC hiện giờ chỉ gói gọn tại
-                            thị trường quê
-                            nhà.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-thumb">
-                        <a href="#"><img
-                                src="https://genk.mediacdn.vn/zoom/250_155/139269124445442048/2020/6/16/photo1592299702395-15922997024781439654173.jpg"
-                                alt=""></a>
-                    </div>
-                    <div class="news-info">
-                        <div class="news-title">
-                            <h4><a href="#">Những bức ảnh có thể trả lời cho câu hỏi: Chuyện gì sẽ xảy ra
-                                    nếu...?</a></h4>
-                        </div>
-                        <div class="news-category"><a href="#">Khám phá</a> - <span class="text-muted">30 phút
-                                trước</span></div>
-                        <div class="news-desc">Chuyện gì sẽ xảy ra nếu bạn để chai nước ngọt ngoài nắng quá lâu, khử
-                            trùng tiền bằng
-                            lò vi sóng, hay...
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-thumb">
-                        <a href="#"><img
-                                src="https://genk.mediacdn.vn/zoom/250_155/139269124445442048/2020/6/16/photo1592258804276-15922588044231637042098.jpg"
-                                alt=""></a>
-                    </div>
-                    <div class="news-info">
-                        <div class="news-title">
-                            <h4><a href="#">Xiaomi ra mắt máy nước nóng bỏ túi Morfun: Kích thước nhỏ gọn, làm nóng
-                                    nhanh, giá 980.000
-                                    đồng</a></h4>
-                        </div>
-                        <div class="news-category"><a href="#">Đồ chơi số</a> - <span class="text-muted">30 phút
-                                trước</span>
-                        </div>
-                        <div class="news-desc">Với kích thước nhỏ gọn, máy nước nóng bỏ túi Morfun của Xiaomi có thể
-                            đựng vừa trong
-                            túi xách, hoàn...
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-thumb">
-                        <a href="#"><img
-                                src="https://genk.mediacdn.vn/zoom/250_155/139269124445442048/2020/6/16/photo1592296749560-1592296749689321578425.png"
-                                alt=""></a>
-                    </div>
-                    <div class="news-info">
-                        <div class="news-title">
-                            <h4><a href="#">AirPods phát nổ trong khi đang gọi điện thoại khiến người dùng phải nhập
-                                    viện</a></h4>
-                        </div>
-                        <div class="news-category"><a href="#">Internet</a> - <span class="text-muted">30 phút
-                                trước</span></div>
-                        <div class="news-desc">Anh chàng kém may mắn này hiện đang phải đối mặt với chứng giảm thính
-                            lực do ảnh
-                            hưởng từ vụ nổ.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-thumb">
-                        <a href="#"><img
-                                src="https://genk.mediacdn.vn/zoom/250_155/139269124445442048/2020/6/16/photo1592298105370-1592298105497188379950.jpg"
-                                alt=""></a>
-                    </div>
-                    <div class="news-info">
-                        <div class="news-title">
-                            <h4><a href="#">HTC bất ngờ tái xuất với U20 5G và Desire 20 Pro: Hỗ trợ 5G, 4 camera,
-                                    pin khủng</a></h4>
-                        </div>
-                        <div class="news-category"><a href="#">Mobile</a> - <span class="text-muted">30 phút
-                                trước</span></div>
-                        <div class="news-desc">Có vẻ như mảng kinh doanh smartphone của HTC hiện giờ chỉ gói gọn tại
-                            thị trường quê
-                            nhà.
-                        </div>
-                    </div>
-                </div>
+                @endfor
             </section>
 
         </div>

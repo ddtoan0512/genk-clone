@@ -21,7 +21,7 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-light" id="navbar-bottom">
     <div class="container">
-        <a class="navbar-brand logo-genk" href="#">
+        <a class="navbar-brand logo-genk" href="/">
             <img src="{{asset('images/logo.png')}}" alt="logo">
         </a>
         <button class="navbar-toggler text-white" type="button" data-toggle="collapse"

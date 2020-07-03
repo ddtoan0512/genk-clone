@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description" class="form-control-label">Mô tả:</label>
-                        <input type="text" class="form-control" required id="description" value="{{ $post->title }}"
+                        <input type="text" class="form-control" required id="description" value="{{ $post->description }}"
                                name="description">
                     </div>
                     <div class="form-group m-0">
@@ -75,7 +75,8 @@
                         </label>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
+                        {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button> --}}
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Quay lại</a>
                         <button type="submit" class="btn btn-primary" value="add" id="btnSavePost">Lưu</button>
                     </div>
                 </form>

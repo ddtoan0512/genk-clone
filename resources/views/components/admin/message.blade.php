@@ -1,7 +1,8 @@
-@if($message = Session::get('success'))
+@if(session('success'))
+
 <script>
     Swal.fire(
-        '{{ $message }}',
+        '{{ session("success") }}',
         '',
         'success'
     );
@@ -16,4 +17,5 @@
         'success'
     );
 </script>
+
 @endif

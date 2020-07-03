@@ -62,7 +62,8 @@
                     </label>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
+                    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button> --}}
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary">Quay lại</a>
                     <button type="submit" class="btn btn-primary" id="btnSavePost">Lưu</button>
                 </div>
             </form>

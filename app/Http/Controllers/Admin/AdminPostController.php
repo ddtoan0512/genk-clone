@@ -109,7 +109,10 @@ class AdminPostController extends Controller
             'thumbnail'   => $thumbnailName
         ]);
 
-        return \redirect('/admin/post')->with('success', "Cập nhật bài viết thành công");
+        $request->session()->flash("success", "Cập nhật danh mục thành công");
+
+        return \redirect('/admin/post');
+        // ->with("success", "Cập nhật danh mục thành công");
     }
 
     /**

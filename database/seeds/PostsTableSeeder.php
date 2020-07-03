@@ -27,14 +27,25 @@ class PostsTableSeeder extends Seeder
             'Facebook sẽ tuyệt chủng như loài khủng long',
             'Vì sao Xiaomi tự tin tuyên bố chỉ lấy lãi 5% trên mỗi sản phẩm - Điều không hãng smartphone nào dám công bố',
             'Bạn có thực sự biết cách dùng tủ lạnh không? Trả lời những câu hỏi này để biết sự thật',
-            'Sau các ứng dụng Trung Quốc, đến lượt Xiaomi và Vivo trở thành nạn nhân của phong trào tẩy chay tại Ấn Độ, nhờ đó Samsung hưởng lợi'
+            'Sau các ứng dụng Trung Quốc, đến lượt Xiaomi và Vivo trở thành nạn nhân của phong trào tẩy chay tại Ấn Độ, nhờ đó Samsung hưởng lợi',
+            'Thủ tướng Ấn Độ "nghỉ chơi" mạng xã hội Weibo của Trung Quốc',
+            'Tại sao kích thước cảm biến camera trên smartphone lại quan trọng hơn số "chấm"?',
+            'Những món đồ kỳ lạ mà người sở hữu phải mang lên mạng để hỏi cách dùng',
+            'Ngoài kỹ năng "bắn chưởng" để săn mồi, sinh vật nhỏ bé này còn sở hữu đôi mắt nhanh nhất hành tinh',
+            'CEO Mark Zuckerberg phản pháo lại chiến dịch tẩy chay Facebook: "Chúng tôi sẽ không thay đổi"',
+            'CEO Airbnb: ‘Chúng tôi dành 12 năm để xây dựng công ty nhưng mất gần như tất cả chỉ trong 6 tuần’',
+            'Thêm một ứng dụng gọi xe công nghệ ‘Made in Vietnam’ gia nhập thị trường',
+            'Điện lực Đà Nẵng phát triển hệ thống tra cứu chỉ số điện theo ngày, khách hàng có thể tự theo dõi, kiểm tra tiền điện của mình',
+            'Hàng trăm con voi gục chết bí ẩn, thảm họa bảo tồn chưa từng thấy khiến khoa học hoảng loạn không hiểu tại sao',
+            'Đây là Galaxy Z Flip 5G phiên bản màu Đồng Huyền Bí',
+            'Bằng chứng cho thấy Apple vẫn chưa "đoạn tuyệt" hoàn toàn với Intel'
         ];
 
         foreach($titles as $title){
             \App\Post::create([
                 'title'       => $title,
                 'slug'        => Str::slug($title, '-'),
-                'thumbnail'   => '1593684030.jpg',
+                'thumbnail'   => '1593764586.jpg',
                 'description' => 'Nắng nóng thế này,không mua điều hòa Nhật thì nên chọn hãng nào?',
                 'user_id'     => 1,
                 'category_id' => 1,

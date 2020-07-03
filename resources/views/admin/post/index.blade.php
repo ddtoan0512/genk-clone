@@ -52,7 +52,8 @@
                     @foreach ($posts as $post)
                     <tr id="cate{{$post->id}}">
                         <td>{{ $post->id }}</td>
-                        <td>{{ $post->title }}</td>
+                        <td><a href="{{ route('get.detail.post', [$post->slug, $post->id]) }}"
+                                target="_blank">{{ $post->title }}</a></td>
                         <td>{{ $post->category->name }}</td>
                         <td>{{ $post->user->name }}</td>
                         <td>
@@ -82,7 +83,8 @@
 <!-- end:: Content  -->
 
 @if(isset($post))
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

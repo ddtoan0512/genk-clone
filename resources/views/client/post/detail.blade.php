@@ -32,62 +32,67 @@
             </div>
         </div>
         <div class="row bootstrap snippets">
-    <div class="col-9 bg-white mt-4 ">
-        <div class="comment-wrapper">
-            <div class="panel panel-info">
-                <h2>
-                    Bình luận
-                </h2>
-                <div class="panel-body">
-                    <textarea class="form-control" placeholder="Nhập bình luận..." rows="3"></textarea>
-                    <br>
-                    <button type="button" class="btn btn-info pull-right">Đăng</button>
-                    <div class="clearfix"></div>
-                    <hr>
-                    <ul class="media-list">
-                        <li class="media">
-                            <a href="#" class="pull-left">
-                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                            </a>
-                            <div class="media-body ml-3">
-                                <strong class="text-success">@MartinoMont</strong>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a href="#" class="pull-left">
-                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                            </a>
-                            <div class="media-body ml-3">
-                                <strong class="text-success">@MartinoMont</strong>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a href="#" class="pull-left">
-                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                            </a>
-                            <div class="media-body ml-3">
-                                <strong class="text-success">@MartinoMont</strong>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
+            <div class="col-9 bg-white mt-4 ">
+                <div class="comment-wrapper">
+                    <div class="panel panel-info">
+                        <h2>
+                            Bình luận
+                        </h2>
+                        <div class="panel-body">
+                            <form action="" method="POST">
+                                @csrf
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                <textarea class="form-control" name="content" placeholder="Nhập bình luận..."
+                                    rows="3"></textarea>
+                                <br>
+                                <button type="submit" class="btn btn-info pull-right">Đăng</button>
+                            </form>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <ul class="media-list">
+                                <li class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                    </a>
+                                    <div class="media-body ml-3">
+                                        <strong class="text-success">@MartinoMont</strong>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                    </a>
+                                    <div class="media-body ml-3">
+                                        <strong class="text-success">@MartinoMont</strong>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                    </a>
+                                    <div class="media-body ml-3">
+                                        <strong class="text-success">@MartinoMont</strong>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
-
-    </div>
-</div>
     </div>
 
 </div>

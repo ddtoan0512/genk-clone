@@ -68,7 +68,7 @@
                         <td>
                             <a href="{{ route('admin.post.edit', $post->id) }}" type="button"><i class="fa fa-edit ml-3"
                                     style="font-size: 20px"></i></a>
-                            <button class="btn " data-toggle="modal" data-target="#confirm-delete">
+                            <button class="btn btnDelete" data-toggle="modal" data-id="{{ $post->id }}" data-target="#confirm-delete">
                                 <i class="fa fa-trash" style="font-size: 20px; color: red"></i>
                             </button>
                         </td>
@@ -95,7 +95,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Huỷ</button>
-                <a href="{{ route('admin.post.remove', $post->id) }}" class="btn btn-danger btn-ok">Xoá bài viết</a>
+                <a href="" id="aModalDelete" class="btn btn-danger btn-ok">Xoá bài viết</a>
             </div>
         </div>
     </div>
@@ -115,6 +115,11 @@
         $('#table_post').DataTable();
         $('#table_post_info').hide();
         $('.dataTables_length').addClass('bs-select');
+
+        $(".btnDelete").click(function () { // Click to only happen on announce links
+            let id = $(this).data('id');
+            $("#aModalDelete").attr("href", `/admin/post/delete/${id}` )
+        });
     });
 
 </script>

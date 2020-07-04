@@ -11,6 +11,10 @@
                 <div class="post-content mt-3 ">
                     {!! $post->content !!}
                 </div>
+
+                <div class="comment">
+
+                </div>
             </div>
             <div class="col-md-3 mt-4 p-0 ads-right">
                 <iframe
@@ -27,13 +31,72 @@
                     width="100%" height="600" frameborder="0" scrolling="no"></iframe>
             </div>
         </div>
+        <div class="row bootstrap snippets">
+    <div class="col-9 bg-white mt-4 ">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                <h2>
+                    Bình luận
+                </h2>
+                <div class="panel-body">
+                    <textarea class="form-control" placeholder="Nhập bình luận..." rows="3"></textarea>
+                    <br>
+                    <button type="button" class="btn btn-info pull-right">Đăng</button>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <ul class="media-list">
+                        <li class="media">
+                            <a href="#" class="pull-left">
+                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                            </a>
+                            <div class="media-body ml-3">
+                                <strong class="text-success">@MartinoMont</strong>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <a href="#" class="pull-left">
+                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                            </a>
+                            <div class="media-body ml-3">
+                                <strong class="text-success">@MartinoMont</strong>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <a href="#" class="pull-left">
+                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                            </a>
+                            <div class="media-body ml-3">
+                                <strong class="text-success">@MartinoMont</strong>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
+    </div>
+
 </div>
 
 <script src="{{ asset('js/carouselCustom.js') }}"></script>
 
 <script>
-    document.getElementById("genk-title").textContent="{{ $post->title }}";
+    document.getElementById("genk-title").textContent = "{{ $post->title }}";
+
 </script>
 
 {{-- <script src="{{ asset('js/app.js') }}"></script> --}}

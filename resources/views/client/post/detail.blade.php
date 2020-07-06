@@ -55,13 +55,16 @@
                             <hr>
                             <ul class="media-list">
                                 @foreach ($post->comments as $comment)
-                                <li class="media">
+                                <li class="media" id="{{ $comment->id }}">
                                     <a class="pull-left">
                                         <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
                                     </a>
                                     <div class="media-body ml-3">
                                         <strong class="text-success">{{ $comment->user->name }}</strong>
                                         <p>{{ $comment->content }}</p>
+                                        @if (Auth::user()->id === $comment->user_id)
+                                        <button type="button" data-id='{{ $comment->id }}' class="btn btn-danger pull-right btn-delete-comment">Xoá</button>
+                                        @endif
                                     </div>
                                 </li>
                                 @endforeach
@@ -105,13 +108,32 @@
                     if (res.status) {
 
                         var html =
-                            '<li class="media"> <a class="pull-left"> <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle"></a>'
-                        html += '<div class="media-body ml-3">'
-                        html += '<strong class="text-success">' + res.user.name +
-                            '</strong>'
-                        html += '<p>' + res.comment.content + '</p></div></li>';
+                            '<li class="media"> <a class="pull-left"> <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle"></a>';
+                        html += '<div class="media-body ml-3">';
+                        html += '<strong class="text-success">' + res.user.name + '</strong>';
+                        html += '<p>' + res.comment.content + '</p>';
+                        html += '<button type="button" data-id="' + res.comment.id +'" class="btn btn-danger pull-right btn-delete-comment">Xoá</button>'
+                        html += '</div></li>';
 
                         $('.media-list').prepend(html);
+                    }
+                }
+            })
+        })
+
+        $('.btn-delete-comment').click(function(){
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: '{{ route('remove.comment') }}',
+                type: 'POST',
+                data: {
+                    id: id,
+                    _token: '{{csrf_token()}}' 
+                },
+                success: function(res){
+                    if(res.status){
+                        $('li#' + id + '').remove();
                     }
                 }
             })

@@ -22,4 +22,14 @@ class CommentController extends Controller
             ]);
         }
     }
+
+    public function destroy(Request $request){
+        if($request->ajax()){
+            $comment = Comment::find($request->id);
+            $comment->delete();
+            return \response()->json([
+               'status' => true 
+            ]);
+        }
+    }
 }

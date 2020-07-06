@@ -83,12 +83,6 @@
     document.getElementById("genk-title").textContent = "{{ $post->title }}";
     $(function () {
 
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     }
-        // })
-
         $('#btnPostComment').click(function (e) {
             e.preventDefault();
             var post_id = $('#post_id').val();

@@ -151,13 +151,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                                 <div class="row kt-login__extra">
                                     <div class="col">
-                                        <label class="kt-checkbox">
+                                        {{-- <label class="kt-checkbox">
                                             <input type="checkbox" name="remember"> Remember me
                                             <span></span>
-                                        </label>
+                                        </label> --}}
                                     </div>
                                     <div class="col kt-align-right">
-                                        <a href="javascript:;" id="kt_login_forgot" class="kt-login__link">Forget
+                                        <a href="/password/reset" class="kt-login__link">Forget
                                             Password ?</a>
                                     </div>
                                 </div>

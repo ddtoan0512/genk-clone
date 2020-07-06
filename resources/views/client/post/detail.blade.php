@@ -41,51 +41,30 @@
                         <div class="panel-body">
                             <form action="" method="POST">
                                 @csrf
-                                <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                <textarea class="form-control" name="content" placeholder="Nhập bình luận..."
-                                    rows="3"></textarea>
+                                <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
+                                <textarea class="form-control" name="content" id="content"
+                                    placeholder="Nhập bình luận..." rows="3"></textarea>
                                 <br>
-                                <button type="submit" class="btn btn-info pull-right">Đăng</button>
+                                @if (Auth::check())
+                                <button type="button" id="btnPostComment" class="btn btn-info pull-right">Đăng</button>
+                                @else
+                                <button type="submit" class="btn btn-info pull-right">Đăng nhập để bình luận</button>
+                                @endif
                             </form>
                             <div class="clearfix"></div>
                             <hr>
                             <ul class="media-list">
+                                @foreach ($post->comments as $comment)
                                 <li class="media">
-                                    <a href="#" class="pull-left">
+                                    <a class="pull-left">
                                         <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
                                     </a>
                                     <div class="media-body ml-3">
-                                        <strong class="text-success">@MartinoMont</strong>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                                        </p>
+                                        <strong class="text-success">{{ $comment->user->name }}</strong>
+                                        <p>{{ $comment->content }}</p>
                                     </div>
                                 </li>
-                                <li class="media">
-                                    <a href="#" class="pull-left">
-                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                    </a>
-                                    <div class="media-body ml-3">
-                                        <strong class="text-success">@MartinoMont</strong>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <a href="#" class="pull-left">
-                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                    </a>
-                                    <div class="media-body ml-3">
-                                        <strong class="text-success">@MartinoMont</strong>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                                        </p>
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -97,12 +76,49 @@
 
 </div>
 
-<script src="{{ asset('js/carouselCustom.js') }}"></script>
-
+@section('script')
 <script>
     document.getElementById("genk-title").textContent = "{{ $post->title }}";
+    $(function () {
+
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // })
+
+        $('#btnPostComment').click(function (e) {
+            e.preventDefault();
+            var post_id = $('#post_id').val();
+            var content = $('#content').val();
+
+            $.ajax({
+                url: '{{ route('post.comment', [$post->slug, $post->id]) }}',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    post_id: post_id,
+                    content: content,
+                    _token: '{{csrf_token()}}'
+                },
+                success: function (res) {
+                    if (res.status) {
+
+                        var html =
+                            '<li class="media"> <a class="pull-left"> <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle"></a>'
+                        html += '<div class="media-body ml-3">'
+                        html += '<strong class="text-success">' + res.user.name +
+                            '</strong>'
+                        html += '<p>' + res.comment.content + '</p></div></li>';
+
+                        $('.media-list').prepend(html);
+                    }
+                }
+            })
+        })
+    })
 
 </script>
+@endsection
 
-{{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 @endsection

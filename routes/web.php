@@ -20,8 +20,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/c/{slug}', 'CategoryController@index')->name('get.list.post');
 Route::get('/p/{slug}-{fid}', 'PostController@show')->name('get.detail.post');
-Route::post('/p/{slug}-{fid}', 'CommentController@store')->name('post.comment');
-
+Route::post('/p/{slug}-{fid}', 'CommentController@store')->name('post.comment')->middleware('auth');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 

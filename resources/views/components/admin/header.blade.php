@@ -18,10 +18,9 @@
 
         <!--begin: User Bar -->
         <div class="kt-header__topbar-item kt-header__topbar-item--user">
-            <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
+            <div class="kt-header__topbar-wrapper" data-offset="0px,0px">
                 <div class="kt-header__topbar-user">
-                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-                    <span class="kt-header__topbar-username kt-hidden-mobile">Sean</span>
+                <a href="/logout" class="kt-header__topbar kt-hidden-mobile">Đăng xuất</a>
                 </div>
             </div>
         </div>

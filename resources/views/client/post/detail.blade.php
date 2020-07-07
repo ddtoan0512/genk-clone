@@ -39,7 +39,7 @@
                             Bình luận
                         </h2>
                         <div class="panel-body">
-                            <form action="" method="POST">
+                            <form action="{{ route('post.comment') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="post_id" id="post_id" value="{{ $post->id }}">
                                 <textarea class="form-control" name="content" id="content"
@@ -63,7 +63,8 @@
                                         <strong class="text-success">{{ $comment->user->name }}</strong>
                                         <p>{{ $comment->content }}</p>
                                         @if ( Auth::check() && Auth::user()->id === $comment->user_id)
-                                        <button type="button" data-id='{{ $comment->id }}' class="btn btn-danger pull-right btn-delete-comment">Xoá</button>
+                                        <button type="button" data-id='{{ $comment->id }}'
+                                            class="btn btn-danger pull-right btn-delete-comment">Xoá</button>
                                         @endif
                                     </div>
                                 </li>
@@ -88,7 +89,7 @@
             var content = $('#content').val();
 
             $.ajax({
-                url: '{{ route('post.comment', [$post->slug, $post->id]) }}',
+                url: `{{ route('post.comment', [$post->slug, $post->id]) }}`,
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -100,11 +101,13 @@
                     if (res.status) {
 
                         var html =
-                            '<li class="media"> <a class="pull-left"> <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle"></a>';
+                            '<li class="media" id="' + res.comment.id + '"> <a class="pull-left"> <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle"></a>';
                         html += '<div class="media-body ml-3">';
-                        html += '<strong class="text-success">' + res.user.name + '</strong>';
+                        html += '<strong class="text-success">' + res.user.name +
+                            '</strong>';
                         html += '<p>' + res.comment.content + '</p>';
-                        html += '<button type="button" data-id="' + res.comment.id +'" class="btn btn-danger pull-right btn-delete-comment">Xoá</button>'
+                        html += '<button type="button" data-id="' + res.comment.id +
+                            '" class="btn btn-danger pull-right btn-delete-comment">Xoá</button>'
                         html += '</div></li>';
 
                         $('.media-list').prepend(html);
@@ -112,19 +115,17 @@
                 }
             })
         })
-
-        $('.btn-delete-comment').click(function(){
+        $(document).on('click', '.btn-delete-comment', function (e) {
             var id = $(this).data('id');
-
             $.ajax({
-                url: '{{ route('remove.comment') }}',
+                url: `{{ route('remove.comment') }}`,
                 type: 'POST',
                 data: {
                     id: id,
-                    _token: '{{csrf_token()}}' 
+                    _token: '{{csrf_token()}}'
                 },
-                success: function(res){
-                    if(res.status){
+                success: function (res) {
+                    if (res.status) {
                         $('li#' + id + '').remove();
                     }
                 }

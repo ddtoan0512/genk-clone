@@ -14,17 +14,6 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
-        // $names = ['group', 'post'];
-
-        // foreach ($names as $name) {
-        //     DB::table('permissions')->insert([
-        //         'code' => $name . '_create',
-        //         'name' => ucfirst($name) . ' Create',
-        //         'description' => 'User can create ' . $name,
-        //         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        //         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        //     ]);
-        // }
 
         $admin_role = Role::where('slug','admin')->first();
         $manager_role = Role::where('slug', 'manager')->first();
@@ -56,8 +45,6 @@ class PermissionTableSeeder extends Seeder
         $deletePost->description = 'User can delete post';
         $deletePost->save();
         $deletePost->roles()->attach($admin_role);
-
-        
 
         $viewRule = new Permission();
         $viewRule->code = 'post_view';

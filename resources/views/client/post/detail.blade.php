@@ -62,7 +62,7 @@
                                     <div class="media-body ml-3">
                                         <strong class="text-success">{{ $comment->user->name }}</strong>
                                         <p>{{ $comment->content }}</p>
-                                        @if (Auth::user()->id === $comment->user_id)
+                                        @if ( Auth::check() && Auth::user()->id === $comment->user_id)
                                         <button type="button" data-id='{{ $comment->id }}' class="btn btn-danger pull-right btn-delete-comment">Xoá</button>
                                         @endif
                                     </div>
@@ -75,7 +75,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 @section('script')

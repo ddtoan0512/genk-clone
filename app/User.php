@@ -44,4 +44,29 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany('App\Comment');
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+
+    public function assignRole(Role $role)
+    {
+        return $this->roles()->save($role);
+    }
+
+    public function hasRole($role)
+    {
+        if (is_string($role)) {
+            return $this->roles->contains('name', $role);
+        }
+        return !! $role->intersect($this->roles)->count();
+    }
+
+    public function hasPermission($permission)
+    {
+        $permission = Permission::with('roles')->where('code', $permission)->first();
+
+        return !!$permission->roles->intersect($this->roles)->count();
+    }
 }

@@ -23,6 +23,8 @@ class AdminSeeder extends Seeder
             "name"     => 'Admin',
             "username" => "admin",
             "email"    => 'ddtoan0512@gmail.com',
+            "phone"    => '0972695558',
+            "address"    => 'Ha Noi',
             "password" => \Illuminate\Support\Facades\Hash::make('12345678')
         ]);
 
@@ -32,6 +34,8 @@ class AdminSeeder extends Seeder
             "name"     => 'Manager',
             "username" => "manager",
             "email"    => 'manager@gmail.com',
+            "phone"    => '0972695558',
+            "address"    => 'Ha Tay',
             "password" => \Illuminate\Support\Facades\Hash::make('12345678')
         ]);
 
@@ -41,6 +45,8 @@ class AdminSeeder extends Seeder
             "name"     => 'Normal',
             "username" => "normal",
             "email"    => 'normal@gmail.com',
+            "phone"    => '0972695558',
+            "address"    => 'Ha Tay',
             "password" => \Illuminate\Support\Facades\Hash::make('12345678')
         ]);
 

@@ -55,12 +55,14 @@ class User extends Authenticatable
         return $this->roles()->save($role);
     }
 
-    public function hasRole($role)
+    /**
+     * Check if user is super admin.
+     *
+     * @return boolean
+     */
+    public function isSuperAdmin()
     {
-        if (is_string($role)) {
-            return $this->roles->contains('name', $role);
-        }
-        return !! $role->intersect($this->roles)->count();
+        return $this->roles->contains('name', 'Administrator');
     }
 
     public function hasPermission($permission)

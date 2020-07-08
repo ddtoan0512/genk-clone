@@ -54,5 +54,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         Route::get('/delete/{id}', 'Admin\AdminUserController@destroy')->name('admin.user.remove');
     });
 
+    Route::group(['prefix' => 'profile'], function(){
+        Route::get('/', 'ProfileController@index')->name('profile.index');
+        Route::put('/', 'ProfileController@update')->name('profile.update');
+    });
 });
 

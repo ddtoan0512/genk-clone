@@ -16,6 +16,7 @@ class AdminRoleController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', Role::class);
         $roles = Role::all();
         return view('admin.role.index', compact('roles'));
     }

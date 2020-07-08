@@ -52,6 +52,7 @@
         <div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1"
             data-ktmenu-dropdown-timeout="500">
             <ul class="kt-menu__nav ">
+                @can('view', App\Category::class)
                 <li class="kt-menu__item {{ request()->is('*category*') ? 'kt-menu__item--active' : '' }}"
                     aria-haspopup="true"><a href="{{ route('admin.category.index') }}" class="kt-menu__link "><span
                             class="kt-menu__link-icon"><svg xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +68,9 @@
                             </svg></span><span class="kt-menu__link-text">Quản lý danh mục</span>
                     </a>
                 </li>
+                @endcan
 
+                @can('view', App\Post::class)
                 <li class="kt-menu__item  {{ request()->is('*post*') ? 'kt-menu__item--active' : '' }}"
                     aria-haspopup="true"><a href="{{ route('admin.post.index') }}" class="kt-menu__link "><span
                             class="kt-menu__link-icon"><svg xmlns="http://www.w3.org/2000/svg"
@@ -85,8 +88,9 @@
                             </svg></span><span class="kt-menu__link-text">Quản lý bài viết</span>
                     </a>
                 </li>
+                @endcan
 
-                <li class="kt-menu__item  {{ request()->is('*user*') ? 'kt-menu__item--active' : '' }}"
+                {{-- <li class="kt-menu__item  {{ request()->is('*user*') ? 'kt-menu__item--active' : '' }}"
                     aria-haspopup="true"><a href="{{ route('admin.user.index') }}" class="kt-menu__link "><span
                             class="kt-menu__link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -102,7 +106,7 @@
                                 </g>
                             </svg></span><span class="kt-menu__link-text">Quản lý người dùng</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="kt-menu__item  {{ request()->is('*profile*') ? 'kt-menu__item--active' : '' }}"
                     aria-haspopup="true"><a href="{{ route('profile.index') }}" class="kt-menu__link "><span
@@ -123,6 +127,7 @@
                     </a>
                 </li>
 
+                @can('view', App\Role::class)
                 <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
                     data-ktmenu-submenu-toggle="hover"><a href="javascript:;"
                         class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-icon"><svg
@@ -150,7 +155,7 @@
                         </ul>
                     </div>
                 </li>
-
+                @endcan
             </ul>
         </div>
     </div>

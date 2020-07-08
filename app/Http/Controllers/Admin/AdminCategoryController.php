@@ -17,6 +17,8 @@ class AdminCategoryController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('view', Category::class);
+
         $categories = Category::all();
         // dd($categories);
         if ($request->ajax()) {

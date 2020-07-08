@@ -35,9 +35,9 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function view(User $user, Post $post)
+    public function view(User $user)
     {
-        return true;
+        return $user->hasPermission('post_view');
     }
 
     /**
@@ -58,7 +58,7 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function update(User $user, Post $post)
+    public function update(User $user)
     {
         return $user->hasPermission('post_update');
     }
@@ -70,7 +70,7 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user)
     {
         return $user->hasPermission('post_delete');
     }
@@ -82,7 +82,7 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function restore(User $user, Post $post)
+    public function restore(User $user)
     {
         //
     }

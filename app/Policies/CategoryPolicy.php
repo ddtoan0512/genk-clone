@@ -12,7 +12,9 @@ class CategoryPolicy
 
     public function before($user, $ability)
     {
-        return $user->isSuperAdmin();
+        if($user->isSuperAdmin()){
+            return true;
+        };
     }
 
     /**
@@ -33,9 +35,9 @@ class CategoryPolicy
      * @param  \App\Category  $category
      * @return mixed
      */
-    public function view(User $user, Category $category)
+    public function view(User $user)
     {
-        return true;
+        return $user->hasPermission('category_view');
     }
 
     /**
@@ -56,7 +58,7 @@ class CategoryPolicy
      * @param  \App\Category  $category
      * @return mixed
      */
-    public function update(User $user, Category $category)
+    public function update(User $user)
     {
         return $user->hasPermission('category_update');
     }
@@ -68,7 +70,7 @@ class CategoryPolicy
      * @param  \App\Category  $category
      * @return mixed
      */
-    public function delete(User $user, Category $category)
+    public function delete(User $user)
     {
         return $user->hasPermission('category_delete');
     }
@@ -80,7 +82,7 @@ class CategoryPolicy
      * @param  \App\Category  $category
      * @return mixed
      */
-    public function restore(User $user, Category $category)
+    public function restore(User $user)
     {
         //
     }
@@ -92,7 +94,7 @@ class CategoryPolicy
      * @param  \App\Category  $category
      * @return mixed
      */
-    public function forceDelete(User $user, Category $category)
+    public function forceDelete(User $user)
     {
         //
     }

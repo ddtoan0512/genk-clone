@@ -58,5 +58,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         Route::get('/', 'ProfileController@index')->name('profile.index');
         Route::put('/', 'ProfileController@update')->name('profile.update');
     });
+
+    Route::group(['prefix' => 'role'], function(){
+        Route::get('/', 'Admin\AdminRoleController@index')->name('role.index');
+        Route::get('/{id}', 'Admin\AdminRoleController@edit')->name('role.edit');
+        Route::put('/{id}', 'Admin\AdminRoleController@update')->name('role.update');
+    });
 });
 

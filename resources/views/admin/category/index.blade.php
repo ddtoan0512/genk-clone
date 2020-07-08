@@ -27,11 +27,13 @@
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-wrapper">
                     <div class="kt-portlet__head-actions">
+                        @can('create', App\Category::class)
                         <button type="button" class="btn btn-bold btn-label-brand btn-sm" id="createCategory"
                             data-toggle="modal">
                             <i class="la la-plus"></i>
                             Thêm danh mục
                         </button>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -57,10 +59,14 @@
                         <td>{{ $cate->slug }}</td>
                         <td>{{ $cate->description }}</td>
                         <td>
+                            @can('delete', App\Category::class)
                             <a href="" type="button" class="removeCate" data-id="{{ $cate->id}}"><i class="fa fa-trash"
                                     style="font-size: 20px; color: red"></i></a>
+                            @endcan
+                            @can('update', App\Category::class)
                             <a href="" type="button" class="updateCate" data-id="{{ $cate->id}}"><i
                                     class="fa fa-edit ml-3" style="font-size: 20px"></i></a>
+                            @endcan
                         </td>
                     </tr>
                     @endforeach

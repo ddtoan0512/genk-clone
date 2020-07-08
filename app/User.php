@@ -62,13 +62,12 @@ class User extends Authenticatable
      */
     public function isSuperAdmin()
     {
-        return $this->roles->contains('name', 'Administrator');
+        return !!$this->roles->where('slug', 'admin')->count();
     }
 
     public function hasPermission($permission)
     {
         $permission = Permission::with('roles')->where('code', $permission)->first();
-
         return !!$permission->roles->intersect($this->roles)->count();
     }
 }

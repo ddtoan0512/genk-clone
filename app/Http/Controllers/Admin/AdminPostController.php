@@ -28,6 +28,7 @@ class AdminPostController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Post::class);
         $categories = Category::all();
         return view('admin.post.create', compact('categories'));
     }
@@ -40,6 +41,7 @@ class AdminPostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Post::class);
         $post = new Post();
         $post->title = $request->input('title');
         $post->slug = \Str::slug($request->input('title'), '-');
@@ -79,6 +81,7 @@ class AdminPostController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', Post::class);
         $post = Post::find($id);
         $categories = Category::all();
         return view('admin.post.edit', compact('post', 'categories'));
@@ -93,6 +96,7 @@ class AdminPostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('update', Post::class);
         $thumbnailName = $request->input('hidden_image');
         if ($request->hasFile('thumbnail')) {
             $thumbnailName = time() . '.' . \request()->file('thumbnail')->getClientOriginalExtension();
@@ -123,6 +127,7 @@ class AdminPostController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Post::class);
         $post = Post::find($id);
         $post->delete();
 

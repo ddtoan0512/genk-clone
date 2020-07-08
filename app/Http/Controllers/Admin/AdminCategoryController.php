@@ -46,6 +46,7 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Category::class);
         $rules = [
             'name'        => 'required',
             'description' => 'required'
@@ -99,6 +100,7 @@ class AdminCategoryController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', Category::class);
         $category = Category::find($id);
 
         return response()->json([
@@ -115,6 +117,7 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('update', Category::class);
         // $category = Category::where("id", $request->id)
         //         ->update([
 
@@ -142,6 +145,7 @@ class AdminCategoryController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Category::class);
         // dd($id);
         $category = Category::where('id', $id)->delete();
         return response()->json([

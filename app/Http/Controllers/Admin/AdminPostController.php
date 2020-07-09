@@ -6,7 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
-
+use Auth;
 class AdminPostController extends Controller
 {
     /**
@@ -49,7 +49,7 @@ class AdminPostController extends Controller
         $post->slug = \Str::slug($request->input('title'), '-');
         $post->description = $request->input('description');
         $post->content = $request->input('content');
-        $post->user_id = 1;
+        $post->user_id = Auth::user()->id;
         $post->category_id = $request->input('category');
         $post->hot = $request->has('hot') ? 1 : 0;
         $post->thumbnail = '';

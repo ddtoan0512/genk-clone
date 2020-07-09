@@ -25,7 +25,7 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->get();
         $hotPosts = Post::where("hot", 1)
                         ->orderBy('created_at', 'desc')
                         ->take(9)

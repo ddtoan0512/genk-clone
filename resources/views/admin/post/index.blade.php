@@ -45,7 +45,7 @@
                         <th class="sorting">ID</th>
                         <th class="sorting">Tiêu đề</th>
                         <th class="sorting">Danh mục</th>
-                        <th class="sorting">Người đăng</th>
+                        {{-- <th class="sorting">Người đăng</th> --}}
                         <th class="sorting">Trạng thái</th>
                         <th class="sorting">Action</th>
                     </tr>
@@ -57,7 +57,7 @@
                         <td><a href="{{ route('get.detail.post', [$post->slug, $post->id]) }}"
                                 target="_blank">{{ $post->title }}</a></td>
                         <td>{{ $post->category->name }}</td>
-                        <td>{{ $post->user->name }}</td>
+                        {{-- <td>{{ $post->user->name }}</td> --}}
                         <td>
                             @if ($post->status === 1)
                             <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill">Được xuất

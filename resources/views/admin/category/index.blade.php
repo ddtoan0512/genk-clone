@@ -200,7 +200,7 @@
                 $('#btnSaveCategory').click(function (e) {
                     e.preventDefault();
                     $.ajax({
-                        url: "/admin/category/update/" + categoryId,
+                        url: "/admin/category/" + categoryId,
                         type: "PUT",
                         dataType: 'json',
                         data: $('#category_form').serialize(),

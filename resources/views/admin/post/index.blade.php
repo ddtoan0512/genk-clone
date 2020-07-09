@@ -118,9 +118,12 @@
         $('#table_post_info').hide();
         $('.dataTables_length').addClass('bs-select');
 
-        $(".btnDelete").click(function () { // Click to only happen on announce links
+        // $(".btnDelete").click(function (e) { // Click to only happen on announce links
+        // });
+
+        $(document).on('click', '.btnDelete', function(e) {
             let id = $(this).data('id');
-            $("#aModalDelete").attr("href", `/admin/post/delete/${id}` )
+            $("#aModalDelete").attr("href", "/admin/post/delete/" + id );
         });
     });
 

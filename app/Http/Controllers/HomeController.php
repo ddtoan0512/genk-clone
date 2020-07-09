@@ -25,11 +25,14 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        $categories = Category::all();
         $posts = Post::all();
-
+        $hotPosts = Post::where("hot", 1)
+                        ->orderBy('created_at', 'desc')
+                        ->take(9)
+                        ->get();
         $viewData = [
-            'posts' => $posts
+            'posts' => $posts,  
+            'hotPosts' => $hotPosts
         ];
 
         return view('home', $viewData);

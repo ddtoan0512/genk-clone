@@ -102,5 +102,19 @@ class PermissionTableSeeder extends Seeder
         $deleteCategory->description = 'User can delete category';
         $deleteCategory->save();
         $deleteCategory->roles()->attach($admin_role);
+
+        // $viewUser = new Permission();
+        // $viewUser->code = 'user_view';
+        // $viewUser->name = 'View User';
+        // $viewUser->description = 'Admin can view user';
+        // $viewUser->save();
+        // $viewUser->roles()->attach($admin_role);
+
+        // $deleteUser = new Permission();
+        // $deleteUser->code = 'user_delete';
+        // $deleteUser->name = 'Delete user';
+        // $deleteUser->description = 'Admin can delete user';
+        // $deleteUser->save();
+        // $deleteUser->roles()->attach($admin_role);
     }
 }

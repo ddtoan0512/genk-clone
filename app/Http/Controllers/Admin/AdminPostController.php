@@ -16,6 +16,7 @@ class AdminPostController extends Controller
      */
     public function index()
     {
+        $this->authorize('view', Post::class);
         $categories = Category::all();
         $posts = Post::all();
         return view('admin.post.index', compact('categories', 'posts'));
@@ -24,6 +25,7 @@ class AdminPostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * x
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -54,7 +56,6 @@ class AdminPostController extends Controller
         if ($request->hasFile('thumbnail')) {
             $thumbnailName = time() . '.' . \request()->file('thumbnail')->getClientOriginalExtension();
             \request()->file('thumbnail')->move(public_path('images/upload/thumbnail'), $thumbnailName);
-
             $post->thumbnail = $thumbnailName;
         }
         $post->save();

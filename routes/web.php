@@ -27,7 +27,7 @@ Route::post('/cmt/delete', 'CommentController@destroy')->name('remove.comment');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
-    Route::get('/', 'Admin\AdminCategoryController@index')->name('admin.home');
+    Route::get('/', 'ProfileController@index')->name('admin.home');
 
     Route::group(['prefix' => 'category'], function(){
         Route::get('/', 'Admin\AdminCategoryController@index')->name('admin.category.index');

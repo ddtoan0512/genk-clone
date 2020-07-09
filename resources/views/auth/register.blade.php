@@ -161,6 +161,34 @@ License: You must have a valid license purchased only from themeforest(the above
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="input-group mb-2">
+        
+                                    <div class="col">
+                                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
+                                            name="phone" value="{{ old('phone') }}" placeholder="Phone" autocomplete="phone" autofocus>
+        
+                                        @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="input-group mb-2">
+        
+                                    <div class="col">
+                                        <input id="address" type="text" class="form-control @error('address') is-invalid @enderror"
+                                            name="address" value="{{ old('address') }}" placeholder="Address" autocomplete="Address" autofocus>
+        
+                                        @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
         
                                 <div class="input-group mb-2">        
                                     <div class="col">

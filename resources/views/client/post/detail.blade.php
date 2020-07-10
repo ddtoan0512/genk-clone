@@ -3,7 +3,7 @@
 <div class="container-fluid bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-9 bg-white mt-4 mx-auto">
+            <div class="col-9 bg-white mt-4 mx-auto border">
                 <div class="post-title">
                     <h2 class="font-weight-bold">{{ $post->title }}</h2>
                 </div>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="row bootstrap snippets">
-            <div class="col-9 bg-white mt-4 ">
+            <div class="col-9 bg-white mt-4 border">
                 <div class="comment-wrapper">
                     <div class="panel panel-info">
                         <h2>
@@ -54,7 +54,7 @@
                             <div class="clearfix"></div>
                             <hr>
                             <ul class="media-list">
-                                @foreach ($post->comments as $comment)
+                                @foreach ($post->comments()->orderBy('created_at', 'desc')->get() as $comment)
                                 <li class="media" id="{{ $comment->id }}">
                                     <a class="pull-left">
                                         <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
@@ -111,6 +111,7 @@
                         html += '</div></li>';
 
                         $('.media-list').prepend(html);
+                        $('#content').val('');
                     }
                 }
             })

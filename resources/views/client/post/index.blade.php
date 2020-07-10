@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@if (isset($posts) && isset($posts[0]) && isset($posts[1])))
 <div class="container-fluid p-0">
     <div class="banner-ads">
         <iframe id="demo_iframe"
@@ -101,4 +101,5 @@
 
 @endsection
 
+@endif
 @endsection

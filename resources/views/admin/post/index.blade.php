@@ -45,8 +45,8 @@
                         <th class="sorting">ID</th>
                         <th class="sorting">Tiêu đề</th>
                         <th class="sorting">Danh mục</th>
-                        {{-- <th class="sorting">Người đăng</th> --}}
-                        <th class="sorting">Trạng thái</th>
+                        <th class="sorting">Người đăng</th>
+                        {{-- <th class="sorting">Trạng thái</th> --}}
                         <th class="sorting">Action</th>
                     </tr>
                 </thead>
@@ -57,8 +57,8 @@
                         <td><a href="{{ route('get.detail.post', [$post->slug, $post->id]) }}"
                                 target="_blank">{{ $post->title }}</a></td>
                         <td>{{ $post->category->name }}</td>
-                        {{-- <td>{{ $post->user->name }}</td> --}}
-                        <td>
+                        <td>{{ $post->user->name }}</td>
+                        {{-- <td>
                             @if ($post->status === 1)
                             <span class="kt-badge  kt-badge--success kt-badge--inline kt-badge--pill">Được xuất
                                 bản</span>
@@ -66,7 +66,7 @@
                             <span class="kt-badge  kt-badge--danger kt-badge--inline kt-badge--pill">Chưa được xuất
                                 bản</span>
                             @endif
-                        </td>
+                        </td> --}}
                         <td>
                             <a href="{{ route('admin.post.edit', $post->id) }}" type="button"><i class="fa fa-edit ml-3"
                                     style="font-size: 20px"></i></a>

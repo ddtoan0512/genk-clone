@@ -16,11 +16,7 @@ class CategoryController extends BaseController
             'status' => 1
         ])->get();
 
-        $viewData = [
-            'category'   => $category,
-            'posts'      => $posts
-        ];
 //        dd($posts);
-        return view("client.post.index", $viewData);
+        return view("client.post.index", compact('category', 'posts'));
     }
 }

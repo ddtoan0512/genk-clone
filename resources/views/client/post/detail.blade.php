@@ -8,10 +8,6 @@
                 <div class="post-content mt-3 ">
                     {!! $post->content !!}
                 </div>
-
-                <div class="comment">
-
-                </div>
             </div>
             <div class="col-md-3 mt-4 p-0 ads-right">
                 <iframe
@@ -29,7 +25,7 @@
             </div>
         </div>
         <div class="row bootstrap snippets">
-            <div class="col-9 bg-white mt-4 border">
+            <div class="col-12 col-md-9 bg-white mt-4 border">
                 <div class="comment-wrapper">
                     <div class="panel panel-info">
                         <h2>

@@ -3,11 +3,8 @@
 <div class="container-fluid bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-9 bg-white mt-4 mx-auto border">
-                <div class="post-title">
-                    <h2 class="font-weight-bold">{{ $post->title }}</h2>
-                </div>
-                <div class="post-title-border"></div>
+            <div class="col-md-9 col-12 bg-white mt-4 mx-auto border">
+                    <h2 class="font-weight-bold border-bottom">{{ $post->title }}</h2>
                 <div class="post-content mt-3 ">
                     {!! $post->content !!}
                 </div>
@@ -82,6 +79,8 @@
 <script>
     document.getElementById("genk-title").textContent = "{{ $post->title }}";
     $(function () {
+
+        $('.post-content img').addClass("img-fluid");
 
         $('#btnPostComment').click(function (e) {
             e.preventDefault();

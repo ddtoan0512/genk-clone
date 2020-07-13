@@ -81,6 +81,10 @@
 <script src="./assets/js/demo1/pages/crud/datatables/basic/paginations.js" type="text/javascript"></script>
 <!--end::Page Scripts -->
 
+<script>
+    // $('#table_post').DataTable();
+</script>
+
 @endsection
 
 @endsection

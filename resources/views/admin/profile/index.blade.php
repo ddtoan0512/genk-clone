@@ -106,7 +106,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend"><span class="input-group-text"><i
                                                                 class="la la-at"></i></span></div>
-                                                    <input type="text" class="form-control" name="email"
+                                                    <input type="text" readonly class="form-control" name="email"
                                                         value="{{ $user->email }}" placeholder="Email"
                                                         aria-describedby="basic-addon1">
                                                 </div>

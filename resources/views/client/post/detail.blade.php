@@ -4,8 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9 col-12 bg-white mt-4 mx-auto border">
-                    <h2 class="font-weight-bold border-bottom">{{ $post->title }}</h2>
-                <div class="post-content mt-3 ">
+                    <h2 class="font-weight-bold border-bottom mt-3 pb-4">{{ $post->title }}</h2>
+                    <div class="post-description mt-5">
+                        <p class="font-weight-bold">{{$post->description}}</p>
+                    </div>
+                <div class="post-content mt-4 ">
                     {!! $post->content !!}
                 </div>
             </div>
